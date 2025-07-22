@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
-import '../models/location.dart';
 import '../widgets/simple_language_button.dart';
 
-class OnSiteOrderTypeScreen extends StatelessWidget {
-  final Location location;
+class OnlineOrderTypeScreen extends StatelessWidget {
   final Function(Locale)? onLanguageChange;
 
-  const OnSiteOrderTypeScreen({
+  const OnlineOrderTypeScreen({
     super.key,
-    required this.location,
     this.onLanguageChange,
   });
 
@@ -22,6 +19,7 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
         title: Text(l10n.appName),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        automaticallyImplyLeading: false,
         actions: [
           // Sprach-Icon in der AppBar (zeigt aktuelle Sprache)
           if (onLanguageChange != null)
@@ -42,79 +40,79 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             
-            // Restaurant Info Card
-            Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+            // Online Order Icon
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade50,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.blue.shade200),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.location_on,
-                      color: Colors.blue,
-                      size: 32,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      location.name,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade800,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      location.address,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey.shade600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+              child: Icon(
+                Icons.smartphone,
+                size: 64,
+                color: Colors.blue.shade600,
               ),
             ),
             
-            const SizedBox(height: 40),
+            const SizedBox(height: 32),
             
             // Titel
             Text(
-              l10n.selectConsumptionType,
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              l10n.orderOnline,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: Colors.blue.shade800,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
             
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             
-            // Hier essen Button
-            _buildConsumptionTypeButton(
+            Text(
+              l10n.selectConsumptionType,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Colors.grey.shade700,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            
+            const SizedBox(height: 40),
+            
+            // Vor Ort essen Button
+            _buildOrderTypeButton(
               context: context,
               icon: Icons.restaurant,
               title: l10n.dineIn,
               subtitle: l10n.dineInDescription,
               color: Colors.green,
-              onTap: () => _selectConsumptionType(context, 'dine_in'),
+              onTap: () => _selectOrderType(context, 'dine_in'),
             ),
             
             const SizedBox(height: 20),
             
-            // Mitnehmen Button
-            _buildConsumptionTypeButton(
+            // Zum Mitnehmen Button
+            _buildOrderTypeButton(
               context: context,
               icon: Icons.takeout_dining,
               title: l10n.takeaway,
               subtitle: l10n.takeawayDescription,
               color: Colors.orange,
-              onTap: () => _selectConsumptionType(context, 'takeaway'),
+              onTap: () => _selectOrderType(context, 'takeaway'),
+            ),
+            
+            const SizedBox(height: 20),
+            
+            // Lieferung Button (zusätzlich für Online)
+            _buildOrderTypeButton(
+              context: context,
+              icon: Icons.delivery_dining,
+              title: 'Lieferung', // TODO: Add to localization
+              subtitle: 'Lieferung nach Hause', // TODO: Add to localization
+              color: Colors.purple,
+              onTap: () => _selectOrderType(context, 'delivery'),
             ),
             
             const Spacer(),
@@ -137,7 +135,7 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      l10n.consumptionTypeInfo,
+                      'Online-Bestellung: Wählen Sie Ihren gewünschten Service.',
                       style: TextStyle(
                         color: Colors.blue.shade800,
                         fontSize: 13,
@@ -155,7 +153,7 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildConsumptionTypeButton({
+  Widget _buildOrderTypeButton({
     required BuildContext context,
     required IconData icon,
     required String title,
@@ -169,13 +167,21 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
-          foregroundColor: color == Colors.green ? Colors.green.shade800 : Colors.orange.shade800,
+          foregroundColor: color == Colors.green 
+              ? Colors.green.shade800 
+              : color == Colors.orange 
+                  ? Colors.orange.shade800 
+                  : Colors.purple.shade800,
           elevation: 4,
           shadowColor: color.withOpacity(0.3),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
             side: BorderSide(
-              color: color == Colors.green ? Colors.green.shade200 : Colors.orange.shade200,
+              color: color == Colors.green 
+                  ? Colors.green.shade200 
+                  : color == Colors.orange 
+                      ? Colors.orange.shade200 
+                      : Colors.purple.shade200,
               width: 2,
             ),
           ),
@@ -185,7 +191,11 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: color == Colors.green ? Colors.green.shade100 : Colors.orange.shade100,
+                color: color == Colors.green 
+                    ? Colors.green.shade100 
+                    : color == Colors.orange 
+                        ? Colors.orange.shade100 
+                        : Colors.purple.shade100,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -220,7 +230,11 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: color == Colors.green ? Colors.green.shade300 : Colors.orange.shade300,
+              color: color == Colors.green 
+                  ? Colors.green.shade300 
+                  : color == Colors.orange 
+                      ? Colors.orange.shade300 
+                      : Colors.purple.shade300,
               size: 20,
             ),
           ],
@@ -229,26 +243,42 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
     );
   }
 
-  void _selectConsumptionType(BuildContext context, String consumptionType) {
+  void _selectOrderType(BuildContext context, String orderType) {
     final l10n = AppLocalizations.of(context)!;
     
-    String message = consumptionType == 'dine_in' 
-        ? '${l10n.dineIn} at ${location.name}'
-        : '${l10n.takeaway} from ${location.name}';
+    String message;
+    Color snackBarColor;
+    
+    switch (orderType) {
+      case 'dine_in':
+        message = '${l10n.dineIn} - ${l10n.proceedingToMenu}';
+        snackBarColor = Colors.green;
+        break;
+      case 'takeaway':
+        message = '${l10n.takeaway} - ${l10n.proceedingToMenu}';
+        snackBarColor = Colors.orange;
+        break;
+      case 'delivery':
+        message = 'Lieferung - ${l10n.proceedingToMenu}';
+        snackBarColor = Colors.purple;
+        break;
+      default:
+        message = l10n.proceedingToMenu;
+        snackBarColor = Colors.blue;
+    }
     
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('$message - ${l10n.proceedingToMenu}'),
-        backgroundColor: consumptionType == 'dine_in' ? Colors.green : Colors.orange,
-        duration: Duration(seconds: 2),
+        content: Text(message),
+        backgroundColor: snackBarColor,
+        duration: const Duration(seconds: 2),
       ),
     );
     
-    // TODO: Navigation zum Menü-Screen
+    // TODO: Navigation zum entsprechenden Screen
     // Navigator.push(context, MaterialPageRoute(
     //   builder: (context) => MenuScreen(
-    //     location: location,
-    //     orderType: consumptionType,
+    //     orderType: orderType,
     //   ),
     // ));
   }

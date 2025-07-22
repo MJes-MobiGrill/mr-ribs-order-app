@@ -10,7 +10,7 @@
     "registeredDeviceIds": [
       "tablet_001_berlin",
       "tablet_002_berlin",
-      "pos_terminal_001"
+      "0f911600653e31a2"
     ],
     "isActive": true,
     "coordinates": {
@@ -43,7 +43,7 @@
     "urlParameter": "hamburg-city",
     "registeredDeviceIds": [
       "tablet_001_hamburg",
-      "tablet_002_hamburg"
+      "f77eaf79a868bfed"
     ],
     "isActive": true,
     "coordinates": {
