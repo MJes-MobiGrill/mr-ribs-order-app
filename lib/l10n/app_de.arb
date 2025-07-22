@@ -55,5 +55,13 @@
   "webQrScannerInfo": "QR-Code-Scanning ist in Webbrowsern nicht verfügbar. Bitte nutze die Mobile-App oder scanne QR-Codes mit der Kamera-App deines Geräts.",
   "backToMenu": "Zurück zum Menü",
   "qrCodeScanHint": "Ruhig halten und auf automatische Erkennung warten",
-  "cameraPermissionDenied": "Kamera-Berechtigung ist für QR-Code-Scanning erforderlich"
+  "cameraPermissionDenied": "Kamera-Berechtigung ist für QR-Code-Scanning erforderlich",
+  "scanNow": "Jetzt scannen",
+  "tapScanButton": "Tippe den Scan-Button um QR-Codes zu erkennen",
+  "cameraActiveInBackground": "Kamera ist im Hintergrund aktiv",
+"initializingCamera": "Kamera wird initialisiert...",
+"startCamera": "Kamera starten",
+"useWebVersion": "Web-Version für Kamera verwenden",
+"webVersionRecommended": "Für QR-Code-Scanning nutze bitte die Web-Version unter mrribsorderapp.netlify.app",
+"scanResult": "Scan-Ergebnis"
 }

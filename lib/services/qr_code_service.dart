@@ -32,11 +32,11 @@ class QrCodeService {
   /// Extrahiert Location-ID aus einer URL
   static String? _extractLocationFromUrl(String url) {
     try {
-      if (url.contains('mrribs.app/qr/')) {
-        final parts = url.split('/qr/');
-        if (parts.length == 2) {
-          final locationPart = parts[1].split('?')[0]; // Entferne Query-Parameter
-          return 'mr_ribs_${locationPart.replaceAll('-', '_')}';
+      if (url.contains('mrribsorderapp.netlify.app') && url.contains('location=')) {
+        final uri = Uri.parse(url);
+        final locationParam = uri.queryParameters['location'];
+        if (locationParam != null) {
+          return 'mr_ribs_${locationParam.replaceAll('-', '_')}';
         }
       }
       return null;
@@ -45,23 +45,11 @@ class QrCodeService {
     }
   }
   
-  /// Simuliert QR-Code Scan für Testing (ohne echten Scanner)
-  static Future<String> simulateQrCodeScan(String testCode) async {
-    // Simuliert Scan-Verzögerung
-    await Future.delayed(Duration(milliseconds: 1500));
-    return testCode;
-  }
-  
   /// Validiert QR-Code Format (Code oder URL)
   static bool isValidQrCodeFormat(String qrCodeText) {
     // Mr. Ribs QR-Codes oder URLs
     return qrCodeText.startsWith('MRRIBS_') || 
-           qrCodeText.contains('mrribs.app/qr/') ||
+           qrCodeText.contains('mrribsorderapp.netlify.app') ||
            qrCodeText.startsWith('https://');
-  }
-  
-  /// Generiert Test-URL
-  static String generateTestUrl(String locationKey) {
-    return 'https://mrribs.app/qr/$locationKey';
   }
 }

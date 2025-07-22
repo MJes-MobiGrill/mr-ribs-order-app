@@ -55,5 +55,13 @@
   "backToMenu": "Back to Menu",
   "qrCodeScanHint": "Hold steady and wait for auto-detection",
   "cameraPermissionDenied": "Camera permission is required for QR-Code scanning",
-  "ok": "OK"
+  "ok": "OK",
+  "scanNow": "Scan Now",
+  "tapScanButton": "Tap the scan button to detect QR codes",
+  "cameraActiveInBackground": "Camera is active in background",
+"initializingCamera": "Initializing camera...",
+"startCamera": "Start Camera",
+"useWebVersion": "Use Web Version for Camera",
+"webVersionRecommended": "For QR-Code scanning, please use the web version at mrribsorderapp.netlify.app",
+"scanResult": "Scan Result"
 }

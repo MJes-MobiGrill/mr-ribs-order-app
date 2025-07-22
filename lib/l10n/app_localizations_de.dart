@@ -175,4 +175,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get scanNow => 'Jetzt scannen';
+
+  @override
+  String get tapScanButton => 'Tippe den Scan-Button um QR-Codes zu erkennen';
 }

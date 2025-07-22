@@ -430,6 +430,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'OK'**
   String get ok;
+
+  /// No description provided for @scanNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Now'**
+  String get scanNow;
+
+  /// No description provided for @tapScanButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the scan button to detect QR codes'**
+  String get tapScanButton;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
