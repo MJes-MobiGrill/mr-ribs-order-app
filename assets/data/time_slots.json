@@ -1,0 +1,101 @@
+{
+  "delivery": {
+    "slots": [
+      {
+        "value": "asap",
+        "label": {
+          "de": "Nächstmöglich (ca. 45 Min)",
+          "en": "As soon as possible (approx. 45 min)"
+        }
+      },
+      {
+        "value": "18:00",
+        "label": {
+          "de": "18:00 - 18:30",
+          "en": "6:00 PM - 6:30 PM"
+        }
+      },
+      {
+        "value": "18:30",
+        "label": {
+          "de": "18:30 - 19:00",
+          "en": "6:30 PM - 7:00 PM"
+        }
+      },
+      {
+        "value": "19:00",
+        "label": {
+          "de": "19:00 - 19:30",
+          "en": "7:00 PM - 7:30 PM"
+        }
+      },
+      {
+        "value": "19:30",
+        "label": {
+          "de": "19:30 - 20:00",
+          "en": "7:30 PM - 8:00 PM"
+        }
+      },
+      {
+        "value": "20:00",
+        "label": {
+          "de": "20:00 - 20:30",
+          "en": "8:00 PM - 8:30 PM"
+        }
+      }
+    ]
+  },
+  "pickup": {
+    "slots": [
+      {
+        "value": "asap",
+        "label": {
+          "de": "Nächstmöglich (ca. 30 Min)",
+          "en": "As soon as possible (approx. 30 min)"
+        }
+      },
+      {
+        "value": "18:00",
+        "label": {
+          "de": "18:00 - 18:15",
+          "en": "6:00 PM - 6:15 PM"
+        }
+      },
+      {
+        "value": "18:15",
+        "label": {
+          "de": "18:15 - 18:30",
+          "en": "6:15 PM - 6:30 PM"
+        }
+      },
+      {
+        "value": "18:30",
+        "label": {
+          "de": "18:30 - 18:45",
+          "en": "6:30 PM - 6:45 PM"
+        }
+      },
+      {
+        "value": "18:45",
+        "label": {
+          "de": "18:45 - 19:00",
+          "en": "6:45 PM - 7:00 PM"
+        }
+      },
+      {
+        "value": "19:00",
+        "label": {
+          "de": "19:00 - 19:15",
+          "en": "7:00 PM - 7:15 PM"
+        }
+      },
+      {
+        "value": "19:15",
+        "label": {
+          "de": "19:15 - 19:30",
+          "en": "7:15 PM - 7:30 PM"
+        }
+      }
+    ]
+  }
+}

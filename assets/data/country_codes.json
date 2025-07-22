@@ -1,0 +1,77 @@
+{
+  "countryCodes": [
+    {
+      "code": "DE",
+      "flag": "🇩🇪",
+      "dialCode": "+49",
+      "name": {
+        "de": "Deutschland",
+        "en": "Germany"
+      },
+      "isDefault": true
+    },
+    {
+      "code": "AT",
+      "flag": "🇦🇹",
+      "dialCode": "+43",
+      "name": {
+        "de": "Österreich",
+        "en": "Austria"
+      }
+    },
+    {
+      "code": "CH",
+      "flag": "🇨🇭",
+      "dialCode": "+41",
+      "name": {
+        "de": "Schweiz",
+        "en": "Switzerland"
+      }
+    },
+    {
+      "code": "NL",
+      "flag": "🇳🇱",
+      "dialCode": "+31",
+      "name": {
+        "de": "Niederlande",
+        "en": "Netherlands"
+      }
+    },
+    {
+      "code": "BE",
+      "flag": "🇧🇪",
+      "dialCode": "+32",
+      "name": {
+        "de": "Belgien",
+        "en": "Belgium"
+      }
+    },
+    {
+      "code": "FR",
+      "flag": "🇫🇷",
+      "dialCode": "+33",
+      "name": {
+        "de": "Frankreich",
+        "en": "France"
+      }
+    },
+    {
+      "code": "PL",
+      "flag": "🇵🇱",
+      "dialCode": "+48",
+      "name": {
+        "de": "Polen",
+        "en": "Poland"
+      }
+    },
+    {
+      "code": "CZ",
+      "flag": "🇨🇿",
+      "dialCode": "+420",
+      "name": {
+        "de": "Tschechien",
+        "en": "Czech Republic"
+      }
+    }
+  ]
+}

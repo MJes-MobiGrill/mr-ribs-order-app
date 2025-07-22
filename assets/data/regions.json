@@ -1,0 +1,64 @@
+{
+  "regions": [
+    {
+      "id": "berlin",
+      "name": {
+        "de": "Berlin & Umgebung",
+        "en": "Berlin & Surroundings"
+      },
+      "description": {
+        "de": "Berlin, Potsdam, Spandau",
+        "en": "Berlin, Potsdam, Spandau"
+      },
+      "icon": "location_city",
+      "color": "#F44336",
+      "isActive": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "brandenburg",
+      "name": {
+        "de": "Brandenburg & Umgebung",
+        "en": "Brandenburg & Surroundings"
+      },
+      "description": {
+        "de": "Brandenburg, Werder, Rathenow",
+        "en": "Brandenburg, Werder, Rathenow"
+      },
+      "icon": "nature",
+      "color": "#4CAF50",
+      "isActive": true,
+      "sortOrder": 2
+    },
+    {
+      "id": "hamburg",
+      "name": {
+        "de": "Hamburg & Umgebung",
+        "en": "Hamburg & Surroundings"
+      },
+      "description": {
+        "de": "Hamburg, Altona, Harburg",
+        "en": "Hamburg, Altona, Harburg"
+      },
+      "icon": "water",
+      "color": "#2196F3",
+      "isActive": true,
+      "sortOrder": 3
+    },
+    {
+      "id": "muenchen",
+      "name": {
+        "de": "München & Umgebung",
+        "en": "Munich & Surroundings"
+      },
+      "description": {
+        "de": "München, Garching, Freising",
+        "en": "Munich, Garching, Freising"
+      },
+      "icon": "landscape",
+      "color": "#795548",
+      "isActive": true,
+      "sortOrder": 4
+    }
+  ]
+}

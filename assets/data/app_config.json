@@ -1,0 +1,51 @@
+{
+  "app": {
+    "name": "Mr. Ribs",
+    "version": "1.0.0",
+    "supportedLanguages": ["de", "en"],
+    "defaultLanguage": "de",
+    "debugMode": true
+  },
+  "business": {
+    "defaultCountry": "Germany",
+    "currency": {
+      "de": "€",
+      "en": "€"
+    },
+    "currencyPosition": {
+      "de": "suffix",
+      "en": "prefix"
+    },
+    "postalCodeLength": 5,
+    "phoneNumberMinLength": 6,
+    "phoneNumberMaxLength": 15
+  },
+  "geocoding": {
+    "provider": "nominatim",
+    "baseUrl": "https://nominatim.openstreetmap.org",
+    "timeout": 10,
+    "defaultCountry": "Germany"
+  },
+  "delivery": {
+    "estimatedTime": {
+      "minutes": 45,
+      "label": {
+        "de": "ca. 45 Min",
+        "en": "approx. 45 min"
+      }
+    }
+  },
+  "pickup": {
+    "estimatedTime": {
+      "minutes": 30,
+      "label": {
+        "de": "ca. 30 Min",
+        "en": "approx. 30 min"
+      }
+    }
+  },
+  "validation": {
+    "postalCodeRegex": "^\\d{5}$",
+    "emailRegex": "^[^@]+@[^@]+\\.[^@]+$"
+  }
+}

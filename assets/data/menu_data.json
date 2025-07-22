@@ -1,0 +1,194 @@
+{
+  "categories": [
+    {
+      "id": "ribs",
+      "name": {
+        "de": "Rippchen",
+        "en": "Ribs"
+      },
+      "icon": "restaurant_menu",
+      "items": [
+        {
+          "id": "ribs_250g",
+          "name": {
+            "de": "Spare Ribs (250g)",
+            "en": "Spare Ribs (250g)"
+          },
+          "description": {
+            "de": "Zarte Schweinerippchen mit BBQ-Sauce",
+            "en": "Tender pork ribs with BBQ sauce"
+          },
+          "price": {
+            "de": "7,90 €",
+            "en": "€7,90"
+          },
+          "image": "assets/images/ribs_250g.jpg"
+        },
+        {
+          "id": "ribs_500g",
+          "name": {
+            "de": "Spare Ribs (500g)",
+            "en": "Spare Ribs (500g)"
+          },
+          "description": {
+            "de": "Große Portion zarte Schweinerippchen",
+            "en": "Large portion of tender pork ribs"
+          },
+          "price": {
+            "de": "9,90 €",
+            "en": "€9.90"
+          },
+          "image": "assets/images/ribs_500g.jpg"
+        }
+      ]
+    },
+    {
+      "id": "sides",
+      "name": {
+        "de": "Beilage",
+        "en": "Sides"
+      },
+      "icon": "rice_bowl",
+      "items": [
+        {
+          "id": "fries",
+          "name": {
+            "de": "Pommes Frites",
+            "en": "French Fries"
+          },
+          "description": {
+            "de": "Knusprige Kartoffelpommes",
+            "en": "Crispy potato fries"
+          },
+          "price": {
+            "de": "4,90 €",
+            "en": "€4.90"
+          },
+          "image": "assets/images/fries.jpg"
+        },
+        {
+          "id": "coleslaw",
+          "name": {
+            "de": "Coleslaw",
+            "en": "Coleslaw"
+          },
+          "description": {
+            "de": "Frischer Krautsalat",
+            "en": "Fresh cabbage salad"
+          },
+          "price": {
+            "de": "3,90 €",
+            "en": "€3.90"
+          },
+          "image": "assets/images/coleslaw.jpg"
+        },
+        {
+          "id": "baked_beans",
+          "name": {
+            "de": "Baked Beans",
+            "en": "Baked Beans"
+          },
+          "description": {
+            "de": "Gebackene Bohnen in Tomatensauce",
+            "en": "Baked beans in tomato sauce"
+          },
+          "price": {
+            "de": "4,50 €",
+            "en": "€4.50"
+          },
+          "image": "assets/images/baked_beans.jpg"
+        },
+        {
+          "id": "corn",
+          "name": {
+            "de": "Maiskolben",
+            "en": "Corn on the Cob"
+          },
+          "description": {
+            "de": "Gegrillter Maiskolben mit Kräuterbutter",
+            "en": "Grilled corn with herb butter"
+          },
+          "price": {
+            "de": "5,50 €",
+            "en": "€5.50"
+          },
+          "image": "assets/images/corn.jpg"
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "name": {
+        "de": "Getränke",
+        "en": "Drinks"
+      },
+      "icon": "local_drink",
+      "items": [
+        {
+          "id": "cola_033",
+          "name": {
+            "de": "Coca Cola (0,33l)",
+            "en": "Coca Cola (0.33l)"
+          },
+          "description": {
+            "de": "Erfrischende Cola",
+            "en": "Refreshing cola"
+          },
+          "price": {
+            "de": "2,90 €",
+            "en": "€2.90"
+          },
+          "image": "assets/images/cola.jpg"
+        },
+        {
+          "id": "beer_05",
+          "name": {
+            "de": "Bier (0,5l)",
+            "en": "Beer (0.5l)"
+          },
+          "description": {
+            "de": "Frisch gezapftes Pils",
+            "en": "Fresh draft beer"
+          },
+          "price": {
+            "de": "3,90 €",
+            "en": "€3.90"
+          },
+          "image": "assets/images/beer.jpg"
+        },
+        {
+          "id": "water_025",
+          "name": {
+            "de": "Wasser (0,25l)",
+            "en": "Water (0.25l)"
+          },
+          "description": {
+            "de": "Stilles Mineralwasser",
+            "en": "Still mineral water"
+          },
+          "price": {
+            "de": "2,50 €",
+            "en": "€2.50"
+          },
+          "image": "assets/images/water.jpg"
+        },
+        {
+          "id": "apple_juice_025",
+          "name": {
+            "de": "Apfelsaft (0,25l)",
+            "en": "Apple Juice (0.25l)"
+          },
+          "description": {
+            "de": "Naturtrüber Apfelsaft",
+            "en": "Natural cloudy apple juice"
+          },
+          "price": {
+            "de": "2,90 €",
+            "en": "€2.90"
+          },
+          "image": "assets/images/apple_juice.jpg"
+        }
+      ]
+    }
+  ]
+}
