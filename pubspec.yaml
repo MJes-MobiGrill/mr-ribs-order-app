@@ -1,28 +1,24 @@
 name: mr_ribs_order_app
-description: "A new Flutter project."
+description: Mr. Ribs Order App - Restaurant Ordering System
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.20.2
- # QR Code Scanner
-  qr_code_scanner: ^1.0.1
   
-  # Kamera-Zugang
-  camera: ^0.10.5+5
-  
-  # Geräte-Services
+  # Core dependencies (Web-kompatibel)
   shared_preferences: ^2.2.2
   crypto: ^3.0.3
   
-  # Permissions
+  # Mobile-only dependencies (bedingte Imports)
+  camera: ^0.10.5+5
+  qr_code_scanner: ^1.0.1
   permission_handler: ^11.0.1
 
 dev_dependencies:
@@ -31,9 +27,11 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
-  generate: true
   uses-material-design: true
   
   assets:
-    - assets/images/flags/
     - assets/data/
+    - assets/images/
+    - assets/images/flags/
+  
+  generate: true
