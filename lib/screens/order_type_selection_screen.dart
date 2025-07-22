@@ -2,17 +2,63 @@ import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../services/device_service.dart';
 import '../services/location_service.dart';
+import '../services/qr_info_service.dart';
 import '../models/location.dart';
 import 'on_site_order_type_screen.dart';
-import 'qr_scanner_screen.dart';
 
-class OrderTypeSelectionScreen extends StatelessWidget {
+class OrderTypeSelectionScreen extends StatefulWidget {
   final Function(Locale) onLanguageChange;
 
   const OrderTypeSelectionScreen({
     super.key,
     required this.onLanguageChange,
   });
+
+  @override
+  State<OrderTypeSelectionScreen> createState() => _OrderTypeSelectionScreenState();
+}
+
+class _OrderTypeSelectionScreenState extends State<OrderTypeSelectionScreen> {
+  Map<String, String> _qrInfoTexts = {};
+  List<Map<String, String>> _qrInfoSteps = [];
+  bool _isLoadingQrInfo = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadQrInfo();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadQrInfo();
+  }
+
+  Future<void> _loadQrInfo() async {
+    final locale = Localizations.localeOf(context);
+    final languageCode = locale.languageCode;
+    
+    try {
+      final texts = await QrInfoService.getQrInfoTexts(languageCode);
+      final steps = await QrInfoService.getQrInfoSteps(languageCode);
+      
+      if (mounted) {
+        setState(() {
+          _qrInfoTexts = texts;
+          _qrInfoSteps = steps;
+          _isLoadingQrInfo = false;
+        });
+      }
+    } catch (e) {
+      print('Error loading QR info: $e');
+      if (mounted) {
+        setState(() {
+          _isLoadingQrInfo = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +107,6 @@ class OrderTypeSelectionScreen extends StatelessWidget {
             
             const SizedBox(height: 16),
             
-            // QR-Code scannen Button
-            _buildOrderTypeButton(
-              context: context,
-              icon: Icons.qr_code_scanner,
-              title: l10n.scanQrCode,
-              subtitle: l10n.scanQrCodeDescription,
-              onTap: () => _openQrScanner(context),
-            ),
-            
-            const SizedBox(height: 16),
-            
             // Tisch reservieren Button
             _buildOrderTypeButton(
               context: context,
@@ -91,10 +126,98 @@ class OrderTypeSelectionScreen extends StatelessWidget {
               subtitle: l10n.orderOnlineDescription,
               onTap: () => _showComingSoonDialog(context, l10n),
             ),
+            
+            const SizedBox(height: 40),
+            
+            // QR-Code Info Box (JSON-basiert)
+            if (!_isLoadingQrInfo) _buildQrCodeInfoBox(context),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildQrCodeInfoBox(BuildContext context) {
+    final title = _qrInfoTexts['title'] ?? 'QR-Code am Tisch?';
+    final description = _qrInfoTexts['description'] ?? 'Scanne den QR-Code am Tisch.';
+    
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.green.shade50,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.green.shade200),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Icon(Icons.qr_code_2, color: Colors.green.shade600, size: 28),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.green.shade800,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            description,
+            style: TextStyle(
+              color: Colors.green.shade700,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(height: 16),
+          ..._buildQrInfoSteps(),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildQrInfoSteps() {
+    return _qrInfoSteps.map((step) {
+      final iconName = step['icon'] ?? 'help';
+      final text = step['text'] ?? 'Schritt';
+      
+      IconData icon;
+      switch (iconName) {
+        case 'camera_alt':
+          icon = Icons.camera_alt;
+          break;
+        case 'qr_code_scanner':
+          icon = Icons.qr_code_scanner;
+          break;
+        case 'launch':
+          icon = Icons.launch;
+          break;
+        default:
+          icon = Icons.help;
+      }
+      
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 4),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.green.shade600, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              text,
+              style: TextStyle(
+                color: Colors.green.shade700,
+                fontSize: 13,
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList();
   }
 
   Widget _buildOrderTypeButton({
@@ -165,11 +288,10 @@ class OrderTypeSelectionScreen extends StatelessWidget {
   String _getLanguageChangeLabel(BuildContext context) {
     final currentLocale = Localizations.localeOf(context);
     
-    // Zeige die gegensätzliche Sprache an
     if (currentLocale.languageCode == 'de') {
-      return 'Change Language';  // Deutsch → Englisch anzeigen
+      return 'Change Language';
     } else {
-      return 'Sprache Ändern';   // Englisch → Deutsch anzeigen
+      return 'Sprache Ändern';
     }
   }
 
@@ -182,35 +304,19 @@ class OrderTypeSelectionScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: Image.asset(
-                'assets/images/flags/de.png',
-                width: 32,
-                height: 24,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.flag, size: 24);
-                },
-              ),
+              leading: const Text('🇩🇪', style: TextStyle(fontSize: 24)),
               title: Text(l10n.german),
               onTap: () {
                 Navigator.pop(context);
-                onLanguageChange(const Locale('de', ''));
+                widget.onLanguageChange(const Locale('de', ''));
               },
             ),
             ListTile(
-              leading: Image.asset(
-                'assets/images/flags/en.png',
-                width: 32,
-                height: 24,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.flag, size: 24);
-                },
-              ),
+              leading: const Text('🇬🇧', style: TextStyle(fontSize: 24)),
               title: Text(l10n.english),
               onTap: () {
                 Navigator.pop(context);
-                onLanguageChange(const Locale('en', ''));
+                widget.onLanguageChange(const Locale('en', ''));
               },
             ),
           ],
@@ -227,12 +333,10 @@ class OrderTypeSelectionScreen extends StatelessWidget {
 
   void _handleOnSiteOrder(BuildContext context, AppLocalizations l10n) async {
     try {
-      // Geräte-ID abrufen und prüfen (im Hintergrund)
       final String deviceId = await DeviceService.getDeviceId();
       final Location? currentLocation = await LocationService.getCurrentLocation();
       
       if (currentLocation != null) {
-        // Gerät ist registriert - Direkt zum Menü
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -240,26 +344,17 @@ class OrderTypeSelectionScreen extends StatelessWidget {
           ),
         );
       } else {
-        // Gerät nicht registriert - Alternativen anbieten
         _showDeviceNotRegisteredDialog(context, l10n, deviceId);
       }
       
     } catch (e) {
-      // Fehler beim Laden
       _showErrorDialog(context, l10n, e.toString());
     }
   }
 
-  void _openQrScanner(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const QrScannerScreen(),
-      ),
-    );
-  }
-
   void _showDeviceNotRegisteredDialog(BuildContext context, AppLocalizations l10n, String deviceId) {
+    final hintText = _qrInfoTexts['deviceNotRegisteredHint'] ?? 'Tipp: Scanne den QR-Code am Tisch.';
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -276,20 +371,35 @@ class OrderTypeSelectionScreen extends StatelessWidget {
           children: [
             Text(l10n.deviceNotRegisteredMessage),
             const SizedBox(height: 16),
-            Text(l10n.alternativeOptions, style: TextStyle(fontWeight: FontWeight.bold)),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.green.shade50,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.green.shade200),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.qr_code_2, color: Colors.green.shade600, size: 20),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      hintText,
+                      style: TextStyle(
+                        color: Colors.green.shade700,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(l10n.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              _openQrScanner(context);
-            },
-            child: Text(l10n.scanQrCode),
           ),
           ElevatedButton(
             onPressed: () {
@@ -339,7 +449,6 @@ class OrderTypeSelectionScreen extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              // TODO: Tischreservierung implementieren
             },
             child: Text(l10n.proceed),
           ),

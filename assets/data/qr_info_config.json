@@ -1,0 +1,41 @@
+{
+  "qrCodeInfo": {
+    "title": {
+      "de": "QR-Code am Tisch?",
+      "en": "QR-Code at the table?"
+    },
+    "description": {
+      "de": "Scanne den QR-Code am Tisch mit deiner normalen Kamera-App. Der Link öffnet automatisch das richtige Restaurant!",
+      "en": "Scan the QR-Code at the table with your normal camera app. The link automatically opens the correct restaurant!"
+    },
+    "steps": [
+      {
+        "icon": "camera_alt",
+        "text": {
+          "de": "Kamera-App öffnen",
+          "en": "Open camera app"
+        }
+      },
+      {
+        "icon": "qr_code_scanner",
+        "text": {
+          "de": "QR-Code scannen",
+          "en": "Scan QR-Code"
+        }
+      },
+      {
+        "icon": "launch",
+        "text": {
+          "de": "Link antippen",
+          "en": "Tap the link"
+        }
+      }
+    ],
+    "deviceNotRegisteredHint": {
+      "de": "Tipp: Scanne den QR-Code am Tisch mit deiner Kamera-App",
+      "en": "Tip: Scan the QR-Code at the table with your camera app"
+    }
+  },
+  "baseUrl": "https://mrribsorderapp.netlify.app",
+  "urlParameter": "location"
+}

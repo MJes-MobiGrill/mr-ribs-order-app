@@ -4,7 +4,9 @@
     "name": "Mr. Ribs Berlin Mitte",
     "address": "Friedrichstraße 123, 10117 Berlin",
     "qrCode": "MRRIBS_BERLIN_MITTE",
-    "qrCodeUrl": "https://mrribs.app/qr/berlin-mitte",
+    "qrCodeUrl": "https://mrribsorderapp.netlify.app/qr/berlin-mitte",
+    "qrCodeDirectUrl": "https://mrribsorderapp.netlify.app?location=berlin-mitte",
+    "urlParameter": "berlin-mitte",
     "registeredDeviceIds": [
       "tablet_001_berlin",
       "tablet_002_berlin",
@@ -36,7 +38,9 @@
     "name": "Mr. Ribs Hamburg City",
     "address": "Mönckebergstraße 45, 20095 Hamburg",
     "qrCode": "MRRIBS_HAMBURG_CITY",
-    "qrCodeUrl": "https://mrribs.app/qr/hamburg-city",
+    "qrCodeUrl": "https://mrribsorderapp.netlify.app/qr/hamburg-city",
+    "qrCodeDirectUrl": "https://mrribsorderapp.netlify.app?location=hamburg-city",
+    "urlParameter": "hamburg-city",
     "registeredDeviceIds": [
       "tablet_001_hamburg",
       "tablet_002_hamburg"
@@ -67,7 +71,9 @@
     "name": "Mr. Ribs München Center",
     "address": "Marienplatz 8, 80331 München",
     "qrCode": "MRRIBS_MUENCHEN_CENTER",
-    "qrCodeUrl": "https://mrribs.app/qr/muenchen-center",
+    "qrCodeUrl": "https://mrribsorderapp.netlify.app/qr/muenchen-center",
+    "qrCodeDirectUrl": "https://mrribsorderapp.netlify.app?location=muenchen-center",
+    "urlParameter": "muenchen-center",
     "registeredDeviceIds": [
       "tablet_001_muenchen"
     ],

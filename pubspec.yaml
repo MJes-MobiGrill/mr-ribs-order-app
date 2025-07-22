@@ -16,11 +16,10 @@ dependencies:
   shared_preferences: ^2.2.2
   crypto: ^3.0.3
   
-  # Nur diese QR-Scanner Dependency nötig:
-  qr_code_scanner: ^1.0.1
+  # Moderner QR Scanner (löst Gradle-Probleme)
+  mobile_scanner: ^3.5.6
   
-  # Camera Package nicht mehr nötig!
-  # permission_handler bleibt für Mobile
+  # Permissions (optional, mobile_scanner handhabt meistens selbst)
   permission_handler: ^11.0.1
 
 dev_dependencies:
