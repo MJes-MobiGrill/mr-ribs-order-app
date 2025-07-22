@@ -16,10 +16,12 @@ dependencies:
   shared_preferences: ^2.2.2
   crypto: ^3.0.3
   
-  # Mobile-only dependencies (bedingte Imports)
-  camera: ^0.11.2
+  # Nur diese QR-Scanner Dependency nötig:
   qr_code_scanner: ^1.0.1
-  permission_handler: ^12.0.1
+  
+  # Camera Package nicht mehr nötig!
+  # permission_handler bleibt für Mobile
+  permission_handler: ^11.0.1
 
 dev_dependencies:
   flutter_test:

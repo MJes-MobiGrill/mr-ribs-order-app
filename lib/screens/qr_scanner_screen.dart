@@ -6,9 +6,8 @@ import '../services/qr_code_service.dart';
 import '../models/location.dart';
 import 'on_site_order_type_screen.dart';
 
-// Bedingte Imports - nur für Mobile
-import 'package:camera/camera.dart' if (dart.library.html) 'dart:html';
-import 'package:qr_code_scanner/qr_code_scanner.dart' if (dart.library.html) 'dart:html';
+// Bedingte Imports - nur QR Scanner für Mobile
+import 'package:qr_code_scanner/qr_code_scanner.dart' if (dart.library.html) 'dart:html' as qr;
 
 class QrScannerScreen extends StatefulWidget {
   const QrScannerScreen({super.key});
@@ -291,10 +290,10 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
       if (kIsWeb) throw Exception('Web not supported');
       
       // Dynamische QR-View Erstellung
-      return QRView(
+      return qr.QRView(
         key: _qrKey,
         onQRViewCreated: _onQRViewCreated,
-        overlay: QrScannerOverlayShape(
+        overlay: qr.QrScannerOverlayShape(
           borderColor: _isProcessing ? Colors.green : Colors.blue,
           borderRadius: 12,
           borderLength: 30,
