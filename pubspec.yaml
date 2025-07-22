@@ -17,14 +17,14 @@ dependencies:
   crypto: ^3.0.3
   
   # Mobile-only dependencies (bedingte Imports)
-  camera: ^0.10.5+5
+  camera: ^0.11.2
   qr_code_scanner: ^1.0.1
-  permission_handler: ^11.0.1
+  permission_handler: ^12.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
