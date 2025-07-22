@@ -19,11 +19,11 @@ class LanguageSelectionScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Logo/Icon
+                // Echtes Logo statt Icon
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
@@ -33,10 +33,27 @@ class LanguageSelectionScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: const Icon(
-                    Icons.restaurant,
-                    size: 64,
-                    color: Colors.white,
+                  child: Image.asset(
+                    'assets/images/Logo_inapp.png',
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      // Fallback falls Logo nicht gefunden
+                      return Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: const Icon(
+                          Icons.restaurant,
+                          size: 64,
+                          color: Colors.white,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 
@@ -78,7 +95,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                   children: [
                     _buildLanguageButton(
                       context: context,
-                      flagAsset: 'assets/images/flags/de.png',
+                      flag: '🇩🇪',
                       languageName: 'Deutsch',
                       locale: const Locale('de', ''),
                     ),
@@ -87,7 +104,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                     
                     _buildLanguageButton(
                       context: context,
-                      flagAsset: 'assets/images/flags/en.png',
+                      flag: '🇬🇧',
                       languageName: 'English',
                       locale: const Locale('en', ''),
                     ),
@@ -103,7 +120,7 @@ class LanguageSelectionScreen extends StatelessWidget {
 
   Widget _buildLanguageButton({
     required BuildContext context,
-    required String flagAsset,
+    required String flag,
     required String languageName,
     required Locale locale,
   }) {
@@ -128,26 +145,9 @@ class LanguageSelectionScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              flagAsset,
-              width: 32,
-              height: 24,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  width: 32,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: const Icon(
-                    Icons.flag,
-                    size: 16,
-                    color: Colors.grey,
-                  ),
-                );
-              },
+            Text(
+              flag,
+              style: const TextStyle(fontSize: 32),
             ),
             const SizedBox(width: 12),
             Text(
