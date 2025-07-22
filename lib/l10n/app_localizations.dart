@@ -401,6 +401,30 @@ abstract class AppLocalizations {
   /// **'Please try scanning another QR code.'**
   String get tryAnotherQrCode;
 
+  /// No description provided for @webQrScannerInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'QR-Code scanning is not available in web browsers. Please use the mobile app or scan QR codes with your device\'s camera app.'**
+  String get webQrScannerInfo;
+
+  /// No description provided for @backToMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Menu'**
+  String get backToMenu;
+
+  /// No description provided for @qrCodeScanHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold steady and wait for auto-detection'**
+  String get qrCodeScanHint;
+
+  /// No description provided for @cameraPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera permission is required for QR-Code scanning'**
+  String get cameraPermissionDenied;
+
   /// No description provided for @ok.
   ///
   /// In en, this message translates to:

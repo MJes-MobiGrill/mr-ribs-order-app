@@ -162,5 +162,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tryAnotherQrCode => 'Please try scanning another QR code.';
 
   @override
+  String get webQrScannerInfo => 'QR-Code scanning is not available in web browsers. Please use the mobile app or scan QR codes with your device\'s camera app.';
+
+  @override
+  String get backToMenu => 'Back to Menu';
+
+  @override
+  String get qrCodeScanHint => 'Hold steady and wait for auto-detection';
+
+  @override
+  String get cameraPermissionDenied => 'Camera permission is required for QR-Code scanning';
+
+  @override
   String get ok => 'OK';
 }

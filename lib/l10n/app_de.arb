@@ -48,8 +48,12 @@
   "startScan": "Scan starten",
   "tryAgain": "Erneut versuchen",
   "webCameraNotSupported": "Kamera wird im Webbrowser nicht unterstützt",
-"useTestButtonsBelow": "Verwende die Test-Buttons unten um QR-Code-Scanning zu simulieren:",
-"pointCameraAtQrCode": "Richte deine Kamera auf einen QR-Code",
-"tryAnotherQrCode": "Bitte versuche einen anderen QR-Code zu scannen.",
-  "ok": "OK"
+  "useTestButtonsBelow": "Verwende die Test-Buttons unten um QR-Code-Scanning zu simulieren:",
+  "pointCameraAtQrCode": "Richte deine Kamera auf einen QR-Code",
+  "tryAnotherQrCode": "Bitte versuche einen anderen QR-Code zu scannen.",
+  "ok": "OK",
+  "webQrScannerInfo": "QR-Code-Scanning ist in Webbrowsern nicht verfügbar. Bitte nutze die Mobile-App oder scanne QR-Codes mit der Kamera-App deines Geräts.",
+  "backToMenu": "Zurück zum Menü",
+  "qrCodeScanHint": "Ruhig halten und auf automatische Erkennung warten",
+  "cameraPermissionDenied": "Kamera-Berechtigung ist für QR-Code-Scanning erforderlich"
 }

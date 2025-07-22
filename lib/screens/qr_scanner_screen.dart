@@ -39,12 +39,30 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
         title: Text(l10n.scanQrCode),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        actions: [
+          // Flash-Toggle
+          if (!kIsWeb)
+            IconButton(
+              icon: Icon(Icons.flash_on),
+              onPressed: () async {
+                await controller?.toggleFlash();
+              },
+            ),
+          // Camera-Switch
+          if (!kIsWeb)
+            IconButton(
+              icon: Icon(Icons.flip_camera_ios),
+              onPressed: () async {
+                await controller?.flipCamera();
+              },
+            ),
+        ],
       ),
       body: kIsWeb ? _buildWebFallback(context, l10n) : _buildMobileScanner(context, l10n),
     );
   }
 
-  // Web-Fallback mit Test-Buttons
+  // Web-Fallback - nur Info, keine Test-Buttons
   Widget _buildWebFallback(BuildContext context, AppLocalizations l10n) {
     return Center(
       child: Padding(
@@ -65,45 +83,28 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
             ),
             const SizedBox(height: 16),
             Text(
-              l10n.useTestButtonsBelow,
+              l10n.webQrScannerInfo,
               style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            // Test-Buttons für Web (simuliere echte Netlify-URLs)
-            Text(
-              'Test URLs (replace with your Netlify domain):',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ElevatedButton.icon(
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(Icons.arrow_back),
+              label: Text(l10n.backToMenu),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
             ),
-            const SizedBox(height: 16),
-            _buildWebTestButton(context, l10n, 'https://your-app.netlify.app?location=berlin-mitte', '🏢 Berlin Mitte'),
-            const SizedBox(height: 12),
-            _buildWebTestButton(context, l10n, 'https://your-app.netlify.app?location=hamburg-city', '🌊 Hamburg City'),
-            const SizedBox(height: 12),
-            _buildWebTestButton(context, l10n, 'https://your-app.netlify.app?location=muenchen-center', '🏔️ München Center'),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildWebTestButton(BuildContext context, AppLocalizations l10n, String url, String label) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton.icon(
-        onPressed: _isProcessing ? null : () => _processQrCode(context, l10n, url),
-        icon: Icon(Icons.qr_code_2),
-        label: Text(label),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green.shade100,
-          foregroundColor: Colors.green.shade800,
-          padding: const EdgeInsets.all(16),
-        ),
-      ),
-    );
-  }
-
-  // Mobile Scanner
+  // Echter Mobile Scanner
   Widget _buildMobileScanner(BuildContext context, AppLocalizations l10n) {
     return Column(
       children: [
@@ -117,8 +118,9 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
               borderRadius: 10,
               borderLength: 30,
               borderWidth: 10,
-              cutOutSize: 300,
+              cutOutSize: MediaQuery.of(context).size.width * 0.8,
             ),
+            onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
           ),
         ),
         Expanded(
@@ -132,13 +134,22 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
                 if (_isProcessing) ...[
                   CircularProgressIndicator(color: Colors.blue),
                   const SizedBox(height: 12),
-                  Text(l10n.processingQrCode),
+                  Text(
+                    l10n.processingQrCode,
+                    style: TextStyle(fontSize: 16, color: Colors.blue.shade800),
+                  ),
                 ] else ...[
                   Icon(Icons.qr_code_scanner, size: 32, color: Colors.blue),
                   const SizedBox(height: 8),
                   Text(
                     l10n.pointCameraAtQrCode,
                     style: TextStyle(fontSize: 16, color: Colors.blue.shade800),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.qrCodeScanHint,
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -151,29 +162,43 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
+    setState(() {
+      this.controller = controller;
+    });
+    
     controller.scannedDataStream.listen((scanData) {
       if (!_isProcessing && scanData.code != null) {
-        _processQrCode(context, AppLocalizations.of(context)!, scanData.code!);
+        _processQrCode(scanData.code!);
       }
     });
   }
 
-  void _processQrCode(BuildContext context, AppLocalizations l10n, String qrCodeData) async {
+  void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
+    if (!p) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.cameraPermissionDenied),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  void _processQrCode(String qrCodeData) async {
     if (_isProcessing) return;
     
     setState(() {
       _isProcessing = true;
     });
 
+    // Vibrieren/Feedback
+    controller?.pauseCamera();
+
     try {
-      // QR-Code verarbeiten
       final Location? location = await QrCodeService.processQrCode(qrCodeData);
 
       if (location != null && mounted) {
         // Erfolg - Restaurant gefunden
-        controller?.pauseCamera();
-        
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -182,11 +207,13 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
         );
       } else if (mounted) {
         // Fehler - QR-Code nicht gefunden
-        _showErrorDialog(context, l10n, 'Restaurant not found for this QR-Code');
+        controller?.resumeCamera();
+        _showErrorDialog(AppLocalizations.of(context)!, 'Restaurant not found for this QR-Code');
       }
     } catch (e) {
       if (mounted) {
-        _showErrorDialog(context, l10n, e.toString());
+        controller?.resumeCamera();
+        _showErrorDialog(AppLocalizations.of(context)!, e.toString());
       }
     }
 
@@ -197,7 +224,7 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
     }
   }
 
-  void _showErrorDialog(BuildContext context, AppLocalizations l10n, String error) {
+  void _showErrorDialog(AppLocalizations l10n, String error) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -208,7 +235,17 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
             Text(l10n.qrCodeInvalid),
           ],
         ),
-        content: Text('$error\n\n${l10n.tryAnotherQrCode}'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('$error'),
+            const SizedBox(height: 16),
+            Text(
+              l10n.tryAnotherQrCode,
+              style: TextStyle(color: Colors.grey.shade600),
+            ),
+          ],
+        ),
         actions: [
           ElevatedButton(
             onPressed: () => Navigator.pop(context),

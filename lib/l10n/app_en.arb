@@ -51,5 +51,9 @@
   "useTestButtonsBelow": "Use the test buttons below to simulate QR code scanning:",
   "pointCameraAtQrCode": "Point your camera at a QR code",
   "tryAnotherQrCode": "Please try scanning another QR code.",
+  "webQrScannerInfo": "QR-Code scanning is not available in web browsers. Please use the mobile app or scan QR codes with your device's camera app.",
+  "backToMenu": "Back to Menu",
+  "qrCodeScanHint": "Hold steady and wait for auto-detection",
+  "cameraPermissionDenied": "Camera permission is required for QR-Code scanning",
   "ok": "OK"
 }
