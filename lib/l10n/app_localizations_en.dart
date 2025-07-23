@@ -117,7 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proceedToMenu => 'Proceed to Menu';
 
   @override
-  String get alternativeOptions => 'Alternative Options:';
+  String get alternativeOptions => 'Alternative options:';
 
   @override
   String get error => 'Error';
@@ -379,4 +379,144 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseSelectDateTime => 'Please select date and time';
+
+  @override
+  String get deliveryAddressCheck => 'Check delivery address';
+
+  @override
+  String get enterDeliveryAddress => 'Enter delivery address';
+
+  @override
+  String get checkDeliveryAvailability => 'We\'ll check if we can deliver to your address';
+
+  @override
+  String get checkAvailability => 'Check availability';
+
+  @override
+  String get deliveryAvailable => 'Delivery available!';
+
+  @override
+  String weDeliverFrom(String restaurant) {
+    return 'We deliver from $restaurant';
+  }
+
+  @override
+  String distance(String distance) {
+    return 'Distance: $distance km';
+  }
+
+  @override
+  String get noDeliveryPossible => 'Sorry, no delivery possible';
+
+  @override
+  String nearestRestaurantDistance(String distance) {
+    return 'The nearest restaurant is $distance km away';
+  }
+
+  @override
+  String get addressOutsideDeliveryArea => 'Your address is outside our delivery area';
+
+  @override
+  String get addressNotFound => 'Address not found. Please check your input.';
+
+  @override
+  String get errorOccurred => 'An error occurred. Please try again later.';
+
+  @override
+  String get searchRestaurant => 'Search restaurant...';
+
+  @override
+  String get noRestaurantsAvailable => 'No restaurants available';
+
+  @override
+  String get noRestaurantsFound => 'No restaurants found';
+
+  @override
+  String get currentlyNoLocations => 'Currently no locations available.';
+
+  @override
+  String get tryDifferentSearch => 'Try a different search.';
+
+  @override
+  String get restaurantForReservation => 'Select restaurant for reservation';
+
+  @override
+  String get restaurantForDelivery => 'Select restaurant for delivery';
+
+  @override
+  String get restaurantForPickup => 'Select restaurant for pickup';
+
+  @override
+  String get restaurantForDineIn => 'Select restaurant for dine-in';
+
+  @override
+  String get selectRestaurant => 'Select restaurant';
+
+  @override
+  String get reservationPossible => 'Table reservation possible';
+
+  @override
+  String get deliveryAvailableShort => 'Delivery available';
+
+  @override
+  String get pickupPossible => 'Pickup possible';
+
+  @override
+  String get dineInPossible => 'Dine in';
+
+  @override
+  String get available => 'Available';
+
+  @override
+  String get closed => 'Closed';
+
+  @override
+  String get tables => 'tables';
+
+  @override
+  String serviceNotAvailable(String restaurant) {
+    return 'This service is not available at $restaurant';
+  }
+
+  @override
+  String get onlineOrderInfo => 'Online order: Select your desired service.';
+
+  @override
+  String get deliveryInfo => 'Delivery Information';
+
+  @override
+  String get deliveryFee => 'Delivery Fee';
+
+  @override
+  String get minimumOrderValue => 'Minimum Order Value';
+
+  @override
+  String get estimatedDeliveryTime => 'Estimated Delivery Time';
+
+  @override
+  String get deliveryFeeInfo => 'The delivery fee will be automatically added to your order.';
+
+  @override
+  String get accept => 'Accept & Continue';
+
+  @override
+  String get freeDelivery => 'Free Delivery';
+
+  @override
+  String get deliveryTime45to60 => '45-60 min.';
+
+  @override
+  String get paymentOnDelivery => 'Payment on delivery';
+
+  @override
+  String get paymentMethods => 'Payment Methods';
+
+  @override
+  String get cashOrCard => 'Cash or Card';
+
+  @override
+  String get changeAddress => 'Change address';
+
+  @override
+  String get continueToMenu => 'Continue to menu';
 }

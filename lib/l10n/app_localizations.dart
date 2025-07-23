@@ -314,7 +314,7 @@ abstract class AppLocalizations {
   /// No description provided for @alternativeOptions.
   ///
   /// In en, this message translates to:
-  /// **'Alternative Options:'**
+  /// **'Alternative options:'**
   String get alternativeOptions;
 
   /// No description provided for @error.
@@ -838,6 +838,270 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please select date and time'**
   String get pleaseSelectDateTime;
+
+  /// No description provided for @deliveryAddressCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Check delivery address'**
+  String get deliveryAddressCheck;
+
+  /// No description provided for @enterDeliveryAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter delivery address'**
+  String get enterDeliveryAddress;
+
+  /// No description provided for @checkDeliveryAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll check if we can deliver to your address'**
+  String get checkDeliveryAvailability;
+
+  /// No description provided for @checkAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **'Check availability'**
+  String get checkAvailability;
+
+  /// No description provided for @deliveryAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery available!'**
+  String get deliveryAvailable;
+
+  /// No description provided for @weDeliverFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'We deliver from {restaurant}'**
+  String weDeliverFrom(String restaurant);
+
+  /// No description provided for @distance.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance: {distance} km'**
+  String distance(String distance);
+
+  /// No description provided for @noDeliveryPossible.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, no delivery possible'**
+  String get noDeliveryPossible;
+
+  /// No description provided for @nearestRestaurantDistance.
+  ///
+  /// In en, this message translates to:
+  /// **'The nearest restaurant is {distance} km away'**
+  String nearestRestaurantDistance(String distance);
+
+  /// No description provided for @addressOutsideDeliveryArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Your address is outside our delivery area'**
+  String get addressOutsideDeliveryArea;
+
+  /// No description provided for @addressNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Address not found. Please check your input.'**
+  String get addressNotFound;
+
+  /// No description provided for @errorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred. Please try again later.'**
+  String get errorOccurred;
+
+  /// No description provided for @searchRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Search restaurant...'**
+  String get searchRestaurant;
+
+  /// No description provided for @noRestaurantsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No restaurants available'**
+  String get noRestaurantsAvailable;
+
+  /// No description provided for @noRestaurantsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No restaurants found'**
+  String get noRestaurantsFound;
+
+  /// No description provided for @currentlyNoLocations.
+  ///
+  /// In en, this message translates to:
+  /// **'Currently no locations available.'**
+  String get currentlyNoLocations;
+
+  /// No description provided for @tryDifferentSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different search.'**
+  String get tryDifferentSearch;
+
+  /// No description provided for @restaurantForReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Select restaurant for reservation'**
+  String get restaurantForReservation;
+
+  /// No description provided for @restaurantForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Select restaurant for delivery'**
+  String get restaurantForDelivery;
+
+  /// No description provided for @restaurantForPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Select restaurant for pickup'**
+  String get restaurantForPickup;
+
+  /// No description provided for @restaurantForDineIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Select restaurant for dine-in'**
+  String get restaurantForDineIn;
+
+  /// No description provided for @selectRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Select restaurant'**
+  String get selectRestaurant;
+
+  /// No description provided for @reservationPossible.
+  ///
+  /// In en, this message translates to:
+  /// **'Table reservation possible'**
+  String get reservationPossible;
+
+  /// No description provided for @deliveryAvailableShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery available'**
+  String get deliveryAvailableShort;
+
+  /// No description provided for @pickupPossible.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup possible'**
+  String get pickupPossible;
+
+  /// No description provided for @dineInPossible.
+  ///
+  /// In en, this message translates to:
+  /// **'Dine in'**
+  String get dineInPossible;
+
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get closed;
+
+  /// No description provided for @tables.
+  ///
+  /// In en, this message translates to:
+  /// **'tables'**
+  String get tables;
+
+  /// No description provided for @serviceNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This service is not available at {restaurant}'**
+  String serviceNotAvailable(String restaurant);
+
+  /// No description provided for @onlineOrderInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Online order: Select your desired service.'**
+  String get onlineOrderInfo;
+
+  /// No description provided for @deliveryInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Information'**
+  String get deliveryInfo;
+
+  /// No description provided for @deliveryFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Fee'**
+  String get deliveryFee;
+
+  /// No description provided for @minimumOrderValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum Order Value'**
+  String get minimumOrderValue;
+
+  /// No description provided for @estimatedDeliveryTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Delivery Time'**
+  String get estimatedDeliveryTime;
+
+  /// No description provided for @deliveryFeeInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'The delivery fee will be automatically added to your order.'**
+  String get deliveryFeeInfo;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept & Continue'**
+  String get accept;
+
+  /// No description provided for @freeDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Free Delivery'**
+  String get freeDelivery;
+
+  /// No description provided for @deliveryTime45to60.
+  ///
+  /// In en, this message translates to:
+  /// **'45-60 min.'**
+  String get deliveryTime45to60;
+
+  /// No description provided for @paymentOnDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment on delivery'**
+  String get paymentOnDelivery;
+
+  /// No description provided for @paymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Methods'**
+  String get paymentMethods;
+
+  /// No description provided for @cashOrCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash or Card'**
+  String get cashOrCard;
+
+  /// No description provided for @changeAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Change address'**
+  String get changeAddress;
+
+  /// No description provided for @continueToMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to menu'**
+  String get continueToMenu;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

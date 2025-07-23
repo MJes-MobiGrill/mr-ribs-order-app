@@ -379,4 +379,144 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get pleaseSelectDateTime => 'Bitte Datum und Uhrzeit wählen';
+
+  @override
+  String get deliveryAddressCheck => 'Lieferadresse prüfen';
+
+  @override
+  String get enterDeliveryAddress => 'Lieferadresse eingeben';
+
+  @override
+  String get checkDeliveryAvailability => 'Wir prüfen, ob wir an Ihre Adresse liefern können';
+
+  @override
+  String get checkAvailability => 'Verfügbarkeit prüfen';
+
+  @override
+  String get deliveryAvailable => 'Lieferung verfügbar!';
+
+  @override
+  String weDeliverFrom(String restaurant) {
+    return 'Wir liefern von $restaurant';
+  }
+
+  @override
+  String distance(String distance) {
+    return 'Entfernung: $distance km';
+  }
+
+  @override
+  String get noDeliveryPossible => 'Leider keine Lieferung möglich';
+
+  @override
+  String nearestRestaurantDistance(String distance) {
+    return 'Das nächste Restaurant ist $distance km entfernt';
+  }
+
+  @override
+  String get addressOutsideDeliveryArea => 'Ihre Adresse liegt außerhalb unseres Liefergebiets';
+
+  @override
+  String get addressNotFound => 'Adresse konnte nicht gefunden werden. Bitte überprüfen Sie Ihre Eingabe.';
+
+  @override
+  String get errorOccurred => 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
+
+  @override
+  String get searchRestaurant => 'Restaurant suchen...';
+
+  @override
+  String get noRestaurantsAvailable => 'Keine Restaurants verfügbar';
+
+  @override
+  String get noRestaurantsFound => 'Keine Restaurants gefunden';
+
+  @override
+  String get currentlyNoLocations => 'Aktuell sind keine Standorte verfügbar.';
+
+  @override
+  String get tryDifferentSearch => 'Versuchen Sie eine andere Suche.';
+
+  @override
+  String get restaurantForReservation => 'Restaurant für Reservierung wählen';
+
+  @override
+  String get restaurantForDelivery => 'Restaurant für Lieferung wählen';
+
+  @override
+  String get restaurantForPickup => 'Restaurant für Abholung wählen';
+
+  @override
+  String get restaurantForDineIn => 'Restaurant zum Essen wählen';
+
+  @override
+  String get selectRestaurant => 'Restaurant wählen';
+
+  @override
+  String get reservationPossible => 'Tischreservierung möglich';
+
+  @override
+  String get deliveryAvailableShort => 'Lieferung verfügbar';
+
+  @override
+  String get pickupPossible => 'Abholung möglich';
+
+  @override
+  String get dineInPossible => 'Vor Ort essen';
+
+  @override
+  String get available => 'Verfügbar';
+
+  @override
+  String get closed => 'Geschlossen';
+
+  @override
+  String get tables => 'Tische';
+
+  @override
+  String serviceNotAvailable(String restaurant) {
+    return 'Dieser Service ist in $restaurant nicht verfügbar';
+  }
+
+  @override
+  String get onlineOrderInfo => 'Online-Bestellung: Wählen Sie Ihren gewünschten Service.';
+
+  @override
+  String get deliveryInfo => 'Lieferinformationen';
+
+  @override
+  String get deliveryFee => 'Liefergebühr';
+
+  @override
+  String get minimumOrderValue => 'Mindestbestellwert';
+
+  @override
+  String get estimatedDeliveryTime => 'Geschätzte Lieferzeit';
+
+  @override
+  String get deliveryFeeInfo => 'Die Liefergebühr wird automatisch zu Ihrer Bestellung hinzugefügt.';
+
+  @override
+  String get accept => 'Akzeptieren & Weiter';
+
+  @override
+  String get freeDelivery => 'Kostenlose Lieferung';
+
+  @override
+  String get deliveryTime45to60 => '45-60 Min.';
+
+  @override
+  String get paymentOnDelivery => 'Zahlung bei Lieferung';
+
+  @override
+  String get paymentMethods => 'Zahlungsmethoden';
+
+  @override
+  String get cashOrCard => 'Bar oder Karte';
+
+  @override
+  String get changeAddress => 'Adresse ändern';
+
+  @override
+  String get continueToMenu => 'Weiter zum Menü';
 }

@@ -17,11 +17,13 @@ enum OrderType {
 class DataInputScreen extends StatefulWidget {
   final Location location;
   final OrderType orderType;
+  final Map<String, String>? prefilledData;
 
   const DataInputScreen({
     super.key,
     required this.location,
     required this.orderType,
+    this.prefilledData,
   });
 
   @override
@@ -53,6 +55,18 @@ class _DataInputScreenState extends State<DataInputScreen> {
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
   int _guestCount = 2;
+
+  @override
+  void initState() {
+    super.initState();
+    // Fülle die Adressfelder vor, falls Daten übergeben wurden
+    if (widget.prefilledData != null) {
+      _streetController.text = widget.prefilledData!['street'] ?? '';
+      _houseNumberController.text = widget.prefilledData!['houseNumber'] ?? '';
+      _postalCodeController.text = widget.prefilledData!['postalCode'] ?? '';
+      _cityController.text = widget.prefilledData!['city'] ?? '';
+    }
+  }
 
   @override
   void dispose() {
@@ -459,9 +473,9 @@ class _DataInputScreenState extends State<DataInputScreen> {
     switch (widget.orderType) {
       case OrderType.dineIn:
       case OrderType.takeaway:
-        return l10n.continueToOrder;
+        return l10n.continueToMenu ?? 'Weiter zum Menü';
       case OrderType.delivery:
-        return l10n.checkAddressAndContinue;
+        return l10n.continueToMenu ?? 'Weiter zum Menü';
       case OrderType.reservation:
         return l10n.makeReservation;
     }

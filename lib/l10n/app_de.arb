@@ -123,5 +123,79 @@
   "number": "Nummer",
   "invalid": "Ungültig",
   "pleaseEnterCity": "Bitte Stadt eingeben",
-  "pleaseSelectDateTime": "Bitte Datum und Uhrzeit wählen"
+  "pleaseSelectDateTime": "Bitte Datum und Uhrzeit wählen",
+  "deliveryAddressCheck": "Lieferadresse prüfen",
+  "enterDeliveryAddress": "Lieferadresse eingeben",
+  "checkDeliveryAvailability": "Wir prüfen, ob wir an Ihre Adresse liefern können",
+  "checkAvailability": "Verfügbarkeit prüfen",
+  "deliveryAvailable": "Lieferung verfügbar!",
+  "weDeliverFrom": "Wir liefern von {restaurant}",
+  "@weDeliverFrom": {
+    "placeholders": {
+      "restaurant": {
+        "type": "String"
+      }
+    }
+  },
+  "distance": "Entfernung: {distance} km",
+  "@distance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "continueToOrder": "Weiter zur Bestellung",
+  "noDeliveryPossible": "Leider keine Lieferung möglich",
+  "nearestRestaurantDistance": "Das nächste Restaurant ist {distance} km entfernt",
+  "@nearestRestaurantDistance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "addressOutsideDeliveryArea": "Ihre Adresse liegt außerhalb unseres Liefergebiets",
+  "alternativeOptions": "Alternative Optionen:",
+  "addressNotFound": "Adresse konnte nicht gefunden werden. Bitte überprüfen Sie Ihre Eingabe.",
+  "errorOccurred": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+  "searchRestaurant": "Restaurant suchen...",
+  "noRestaurantsAvailable": "Keine Restaurants verfügbar",
+  "noRestaurantsFound": "Keine Restaurants gefunden",
+  "currentlyNoLocations": "Aktuell sind keine Standorte verfügbar.",
+  "tryDifferentSearch": "Versuchen Sie eine andere Suche.",
+  "restaurantForReservation": "Restaurant für Reservierung wählen",
+  "restaurantForDelivery": "Restaurant für Lieferung wählen",
+  "restaurantForPickup": "Restaurant für Abholung wählen",
+  "restaurantForDineIn": "Restaurant zum Essen wählen",
+  "selectRestaurant": "Restaurant wählen",
+  "reservationPossible": "Tischreservierung möglich",
+  "deliveryAvailableShort": "Lieferung verfügbar",
+  "pickupPossible": "Abholung möglich",
+  "dineInPossible": "Vor Ort essen",
+  "available": "Verfügbar",
+  "closed": "Geschlossen",
+  "tables": "Tische",
+  "serviceNotAvailable": "Dieser Service ist in {restaurant} nicht verfügbar",
+  "@serviceNotAvailable": {
+    "placeholders": {
+      "restaurant": {
+        "type": "String"
+      }
+    }
+  },
+  "onlineOrderInfo": "Online-Bestellung: Wählen Sie Ihren gewünschten Service.",
+  "deliveryInfo": "Lieferinformationen",
+  "deliveryFee": "Liefergebühr",
+  "minimumOrderValue": "Mindestbestellwert",
+  "estimatedDeliveryTime": "Geschätzte Lieferzeit",
+  "deliveryFeeInfo": "Die Liefergebühr wird automatisch zu Ihrer Bestellung hinzugefügt.",
+  "accept": "Akzeptieren & Weiter",
+  "freeDelivery": "Kostenlose Lieferung",
+  "deliveryTime45to60": "45-60 Min.",
+  "paymentOnDelivery": "Zahlung bei Lieferung",
+  "paymentMethods": "Zahlungsmethoden",
+  "cashOrCard": "Bar oder Karte",
+  "changeAddress": "Adresse ändern",
+  "continueToMenu": "Weiter zum Menü"
 }

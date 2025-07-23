@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
-import '../widgets/simple_language_button.dart';
+import '../widgets/dual_language_button.dart';
 import '../theme/app_theme.dart';
 import 'location_selection_screen.dart';
+import 'delivery_address_check_screen.dart';
 
 class OnlineOrderTypeScreen extends StatelessWidget {
   final Function(Locale)? onLanguageChange;
@@ -22,22 +23,11 @@ class OnlineOrderTypeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           if (onLanguageChange != null)
-            SimpleAppBarLanguageButton(
+            CompactLanguageToggle(
               onLanguageChanged: onLanguageChange!,
             ),
         ],
       ),
-      floatingActionButton: onLanguageChange != null 
-          ? FloatingActionButton.extended(
-              onPressed: () => _showLanguageDialog(context),
-              backgroundColor: AppTheme.grey800,
-              foregroundColor: Colors.white,
-              elevation: 2,
-              icon: const Icon(Icons.language, size: 20),
-              label: Text(_getLanguageButtonText(context)),
-            )
-          : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -45,36 +35,55 @@ class OnlineOrderTypeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 40),
             
-            // Online Order Icon
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppTheme.grey300),
-              ),
-              child: Icon(
-                Icons.smartphone,
-                size: 64,
-                color: AppTheme.grey700,
-              ),
-            ),
-            
-            const SizedBox(height: 32),
-            
-            // Titel
-            Text(
-              l10n.orderOnline,
-              style: Theme.of(context).textTheme.headlineMedium,
-              textAlign: TextAlign.center,
-            ),
-            
-            const SizedBox(height: 16),
-            
-            Text(
-              l10n.selectConsumptionType,
-              style: Theme.of(context).textTheme.titleMedium,
-              textAlign: TextAlign.center,
+            // Logo und Titel nebeneinander
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Logo
+                Image.asset(
+                  'assets/images/Logo_inapp.png',
+                  width: 80,
+                  height: 80,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: AppTheme.primaryDark,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: const Icon(
+                        Icons.restaurant,
+                        size: 40,
+                        color: Colors.white,
+                      ),
+                    );
+                  },
+                ),
+                
+                const SizedBox(width: 24),
+                
+                // Titel
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.orderOnline,
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        color: AppTheme.grey900,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.selectConsumptionType,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: AppTheme.grey600,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             
             const SizedBox(height: 40),
@@ -211,26 +220,24 @@ class OnlineOrderTypeScreen extends StatelessWidget {
   }
 
   void _selectOrderType(BuildContext context, String orderType) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => LocationSelectionScreen(
-          orderType: orderType,
+    if (orderType == 'delivery') {
+      // Bei Lieferung erst Adresse prüfen
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const DeliveryAddressCheckScreen(),
         ),
-      ),
-    );
-  }
-
-  String _getLanguageButtonText(BuildContext context) {
-    final currentLocale = Localizations.localeOf(context);
-    return currentLocale.languageCode == 'de' 
-        ? '🇬🇧 English'
-        : '🇩🇪 Deutsch';
-  }
-
-  void _showLanguageDialog(BuildContext context) {
-    final currentLocale = Localizations.localeOf(context);
-    final newLanguage = currentLocale.languageCode == 'de' ? 'en' : 'de';
-    onLanguageChange?.call(Locale(newLanguage));
+      );
+    } else {
+      // Alle anderen direkt zur Restaurant-Auswahl
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LocationSelectionScreen(
+            orderType: orderType,
+          ),
+        ),
+      );
+    }
   }
 }

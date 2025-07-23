@@ -30,7 +30,10 @@
         "sunday": "12:00-21:00"
       },
       "maxTables": 50,
-      "supportedOrderTypes": ["dine_in", "takeaway", "delivery"]
+      "supportedOrderTypes": ["dine_in", "takeaway", "delivery"],
+      "deliveryRadius": 5.0,
+      "minimumOrderValue": 15.00,
+      "deliveryFee": 2.50
     }
   },
   {
@@ -63,7 +66,10 @@
         "sunday": "12:00-21:00"
       },
       "maxTables": 40,
-      "supportedOrderTypes": ["dine_in", "takeaway"]
+      "supportedOrderTypes": ["dine_in", "takeaway"],
+      "deliveryRadius": 0,
+      "minimumOrderValue": 0,
+      "deliveryFee": 0
     }
   },
   {
@@ -95,7 +101,10 @@
         "sunday": "12:00-21:00"
       },
       "maxTables": 35,
-      "supportedOrderTypes": ["dine_in", "takeaway", "delivery"]
+      "supportedOrderTypes": ["dine_in", "takeaway", "delivery"],
+      "deliveryRadius": 5.0,
+      "minimumOrderValue": 20.00,
+      "deliveryFee": 3.00
     }
   }
 ]

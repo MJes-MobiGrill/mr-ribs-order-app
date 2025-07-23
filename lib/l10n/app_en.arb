@@ -123,5 +123,79 @@
   "number": "Number",
   "invalid": "Invalid",
   "pleaseEnterCity": "Please enter city",
-  "pleaseSelectDateTime": "Please select date and time"
+  "pleaseSelectDateTime": "Please select date and time",
+  "deliveryAddressCheck": "Check delivery address",
+  "enterDeliveryAddress": "Enter delivery address",
+  "checkDeliveryAvailability": "We'll check if we can deliver to your address",
+  "checkAvailability": "Check availability",
+  "deliveryAvailable": "Delivery available!",
+  "weDeliverFrom": "We deliver from {restaurant}",
+  "@weDeliverFrom": {
+    "placeholders": {
+      "restaurant": {
+        "type": "String"
+      }
+    }
+  },
+  "distance": "Distance: {distance} km",
+  "@distance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "continueToOrder": "Continue to order",
+  "noDeliveryPossible": "Sorry, no delivery possible",
+  "nearestRestaurantDistance": "The nearest restaurant is {distance} km away",
+  "@nearestRestaurantDistance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "addressOutsideDeliveryArea": "Your address is outside our delivery area",
+  "alternativeOptions": "Alternative options:",
+  "addressNotFound": "Address not found. Please check your input.",
+  "errorOccurred": "An error occurred. Please try again later.",
+  "searchRestaurant": "Search restaurant...",
+  "noRestaurantsAvailable": "No restaurants available",
+  "noRestaurantsFound": "No restaurants found",
+  "currentlyNoLocations": "Currently no locations available.",
+  "tryDifferentSearch": "Try a different search.",
+  "restaurantForReservation": "Select restaurant for reservation",
+  "restaurantForDelivery": "Select restaurant for delivery",
+  "restaurantForPickup": "Select restaurant for pickup",
+  "restaurantForDineIn": "Select restaurant for dine-in",
+  "selectRestaurant": "Select restaurant",
+  "reservationPossible": "Table reservation possible",
+  "deliveryAvailableShort": "Delivery available",
+  "pickupPossible": "Pickup possible",
+  "dineInPossible": "Dine in",
+  "available": "Available",
+  "closed": "Closed",
+  "tables": "tables",
+  "serviceNotAvailable": "This service is not available at {restaurant}",
+  "@serviceNotAvailable": {
+    "placeholders": {
+      "restaurant": {
+        "type": "String"
+      }
+    }
+  },
+  "onlineOrderInfo": "Online order: Select your desired service.",
+  "deliveryInfo": "Delivery Information",
+  "deliveryFee": "Delivery Fee",
+  "minimumOrderValue": "Minimum Order Value",
+  "estimatedDeliveryTime": "Estimated Delivery Time",
+  "deliveryFeeInfo": "The delivery fee will be automatically added to your order.",
+  "accept": "Accept & Continue",
+  "freeDelivery": "Free Delivery",
+  "deliveryTime45to60": "45-60 min.",
+  "paymentOnDelivery": "Payment on delivery",
+  "paymentMethods": "Payment Methods",
+  "cashOrCard": "Cash or Card",
+  "changeAddress": "Change address",
+  "continueToMenu": "Continue to menu"
 }

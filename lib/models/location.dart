@@ -80,6 +80,9 @@ class RestaurantInfo {
   final OpeningHours openingHours;
   final int maxTables;
   final List<String> supportedOrderTypes;
+  final double deliveryRadius;
+  final double minimumOrderValue;
+  final double deliveryFee;
 
   RestaurantInfo({
     required this.phone,
@@ -87,6 +90,9 @@ class RestaurantInfo {
     required this.openingHours,
     required this.maxTables,
     required this.supportedOrderTypes,
+    this.deliveryRadius = 0.0,
+    this.minimumOrderValue = 0.0,
+    this.deliveryFee = 0.0,
   });
 
   factory RestaurantInfo.fromJson(Map<String, dynamic> json) {
@@ -96,6 +102,9 @@ class RestaurantInfo {
       openingHours: OpeningHours.fromJson(json['openingHours'] ?? {}),
       maxTables: json['maxTables'] ?? 0,
       supportedOrderTypes: List<String>.from(json['supportedOrderTypes'] ?? []),
+      deliveryRadius: (json['deliveryRadius'] ?? 0.0).toDouble(),
+      minimumOrderValue: (json['minimumOrderValue'] ?? 0.0).toDouble(),
+      deliveryFee: (json['deliveryFee'] ?? 0.0).toDouble(),
     );
   }
 
@@ -106,6 +115,9 @@ class RestaurantInfo {
       'openingHours': openingHours.toJson(),
       'maxTables': maxTables,
       'supportedOrderTypes': supportedOrderTypes,
+      'deliveryRadius': deliveryRadius,
+      'minimumOrderValue': minimumOrderValue,
+      'deliveryFee': deliveryFee,
     };
   }
 }
