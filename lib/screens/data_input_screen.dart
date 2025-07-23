@@ -53,7 +53,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
   
   // Reservierungs-Variablen
   DateTime? _selectedDate;
-  TimeOfDay? _selectedTime;
+  String? _selectedTimeSlot; // Geändert von TimeOfDay zu String
   int _guestCount = 2;
 
   @override
@@ -217,10 +217,15 @@ class _DataInputScreenState extends State<DataInputScreen> {
           const SizedBox(height: 24),
           ReservationDetailsWidget(
             selectedDate: _selectedDate,
-            selectedTime: _selectedTime,
+            selectedTimeSlot: _selectedTimeSlot,
             guestCount: _guestCount,
             onDateTap: () => _selectDate(context),
-            onTimeTap: () => _selectTime(context),
+            location: widget.location,
+            onTimeSlotSelected: (timeSlot) {
+              setState(() {
+                _selectedTimeSlot = timeSlot;
+              });
+            },
             onGuestCountChanged: (value) {
               if (value != null) {
                 setState(() {
@@ -325,18 +330,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-      });
-    }
-  }
-
-  Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: const TimeOfDay(hour: 19, minute: 0),
-    );
-    if (picked != null && picked != _selectedTime) {
-      setState(() {
-        _selectedTime = picked;
+        _selectedTimeSlot = null; // Reset Zeitslot bei Datumsänderung
       });
     }
   }
@@ -348,7 +342,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
     // Zusätzliche Validierung für Reservierung
     if (widget.orderType == OrderType.reservation) {
-      if (_selectedDate == null || _selectedTime == null) {
+      if (_selectedDate == null || _selectedTimeSlot == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(l10n.pleaseSelectDateTime),
@@ -423,8 +417,8 @@ class _DataInputScreenState extends State<DataInputScreen> {
       if (_selectedDate != null) {
         data['date'] = _selectedDate!.toIso8601String();
       }
-      if (_selectedTime != null) {
-        data['time'] = '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}';
+      if (_selectedTimeSlot != null) {
+        data['time'] = _selectedTimeSlot!;
       }
       data['guestCount'] = _guestCount;
     }

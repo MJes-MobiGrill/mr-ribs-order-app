@@ -1102,6 +1102,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue to menu'**
   String get continueToMenu;
+
+  /// No description provided for @selectArrivalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Select arrival time'**
+  String get selectArrivalTime;
+
+  /// No description provided for @availableTimeSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'Available times'**
+  String get availableTimeSlots;
+
+  /// No description provided for @noTimeSlotsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No times available'**
+  String get noTimeSlotsAvailable;
+
+  /// No description provided for @timeSlotUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This time is no longer available'**
+  String get timeSlotUnavailable;
+
+  /// No description provided for @arrivalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival time'**
+  String get arrivalTime;
+
+  /// No description provided for @timeSlotLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{time}'**
+  String timeSlotLabel(Object time);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

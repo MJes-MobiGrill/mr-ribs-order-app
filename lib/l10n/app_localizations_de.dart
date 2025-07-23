@@ -519,4 +519,24 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get continueToMenu => 'Weiter zum Menü';
+
+  @override
+  String get selectArrivalTime => 'Ankunftszeit wählen';
+
+  @override
+  String get availableTimeSlots => 'Verfügbare Zeiten';
+
+  @override
+  String get noTimeSlotsAvailable => 'Keine Zeiten verfügbar';
+
+  @override
+  String get timeSlotUnavailable => 'Diese Zeit ist nicht mehr verfügbar';
+
+  @override
+  String get arrivalTime => 'Ankunftszeit';
+
+  @override
+  String timeSlotLabel(Object time) {
+    return '$time Uhr';
+  }
 }

@@ -519,4 +519,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continueToMenu => 'Continue to menu';
+
+  @override
+  String get selectArrivalTime => 'Select arrival time';
+
+  @override
+  String get availableTimeSlots => 'Available times';
+
+  @override
+  String get noTimeSlotsAvailable => 'No times available';
+
+  @override
+  String get timeSlotUnavailable => 'This time is no longer available';
+
+  @override
+  String get arrivalTime => 'Arrival time';
+
+  @override
+  String timeSlotLabel(Object time) {
+    return '$time';
+  }
 }

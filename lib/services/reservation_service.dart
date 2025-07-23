@@ -3,10 +3,134 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/reservation.dart';
 import '../models/location.dart';
+import '../models/time_slot.dart';
 
 class ReservationService {
   static const String _reservationsKey = 'reservations';
   static const String _utilizationKey = 'utilization';
+  
+  /// Generiert verfügbare Zeitslots basierend auf Öffnungszeiten
+  static Future<List<TimeSlot>> generateTimeSlots(
+    Location restaurant,
+    DateTime date,
+  ) async {
+    try {
+      // Lade Zeitslot-Konfiguration
+      final String response = await rootBundle.loadString('assets/data/reservation_time_slots.json');
+      final Map<String, dynamic> config = json.decode(response);
+      final slotConfig = config['reservationTimeSlots'];
+      
+      // Bestimme Wochentag
+      final weekday = _getWeekdayName(date.weekday);
+      final openingHours = _getOpeningHoursForDay(restaurant.restaurantInfo.openingHours, weekday);
+      
+      if (openingHours == 'Closed' || openingHours == 'Geschlossen') {
+        return [];
+      }
+      
+      // Parse Öffnungszeiten
+      final parts = openingHours.split('-');
+      if (parts.length != 2) return [];
+      
+      final openTime = _parseTime(parts[0].trim());
+      final closeTime = _parseTime(parts[1].trim());
+      
+      if (openTime == null || closeTime == null) return [];
+      
+      // Generiere Slots
+      final slots = <TimeSlot>[];
+      final slotDuration = slotConfig['slotDuration'] as int;
+      final toleranceMinutes = slotConfig['toleranceMinutes'] as int;
+      final lastReservationMinutes = slotConfig['lastReservationBeforeClosing'] as int;
+      
+      var currentTime = openTime;
+      final lastPossibleTime = closeTime.subtract(Duration(minutes: lastReservationMinutes));
+      
+      while (currentTime.isBefore(lastPossibleTime) || currentTime.isAtSameMomentAs(lastPossibleTime)) {
+        final endTime = currentTime.add(Duration(minutes: toleranceMinutes));
+        
+        slots.add(TimeSlot(
+          startTime: _formatTime(currentTime),
+          endTime: _formatTime(endTime),
+          isAvailable: true,
+        ));
+        
+        currentTime = currentTime.add(Duration(minutes: slotDuration));
+      }
+      
+      // Filter vergangene Zeiten für heutiges Datum
+      if (_isToday(date)) {
+        final now = DateTime.now();
+        slots.removeWhere((slot) {
+          final slotTime = _parseTime(slot.startTime);
+          if (slotTime == null) return true;
+          
+          final slotDateTime = DateTime(
+            date.year,
+            date.month,
+            date.day,
+            slotTime.hour,
+            slotTime.minute,
+          );
+          
+          // Mindestens 2 Stunden Vorlaufzeit
+          return slotDateTime.isBefore(now.add(const Duration(hours: 2)));
+        });
+      }
+      
+      return slots;
+    } catch (e) {
+      print('Error generating time slots: $e');
+      return [];
+    }
+  }
+  
+  static String _getWeekdayName(int weekday) {
+    const days = [
+      'monday', 'tuesday', 'wednesday', 'thursday', 
+      'friday', 'saturday', 'sunday'
+    ];
+    return days[weekday - 1];
+  }
+  
+  static String _getOpeningHoursForDay(OpeningHours hours, String day) {
+    switch (day) {
+      case 'monday': return hours.monday;
+      case 'tuesday': return hours.tuesday;
+      case 'wednesday': return hours.wednesday;
+      case 'thursday': return hours.thursday;
+      case 'friday': return hours.friday;
+      case 'saturday': return hours.saturday;
+      case 'sunday': return hours.sunday;
+      default: return 'Closed';
+    }
+  }
+  
+  static DateTime? _parseTime(String timeStr) {
+    try {
+      final parts = timeStr.split(':');
+      if (parts.length != 2) return null;
+      
+      final hour = int.parse(parts[0]);
+      final minute = int.parse(parts[1]);
+      
+      final now = DateTime.now();
+      return DateTime(now.year, now.month, now.day, hour, minute);
+    } catch (e) {
+      return null;
+    }
+  }
+  
+  static String _formatTime(DateTime time) {
+    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
+  }
+  
+  static bool _isToday(DateTime date) {
+    final now = DateTime.now();
+    return date.year == now.year && 
+           date.month == now.month && 
+           date.day == now.day;
+  }
   
   /// Erstellt eine neue Reservierung
   static Future<Reservation> createReservation({

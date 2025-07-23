@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
-import '../../models/location.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../models/location.dart';
 
 class ReservationDetailsWidget extends StatelessWidget {
   final DateTime? selectedDate;
@@ -95,7 +95,7 @@ class ReservationDetailsWidget extends StatelessWidget {
         // Zeit-Auswahl (nur wenn Datum gewählt wurde)
         if (selectedDate != null) ...[
           const SizedBox(height: 24),
-          ReservationTimeSlotWidget(
+          TimeSlotSelector(
             selectedDate: selectedDate!,
             location: location,
             selectedTimeSlot: selectedTimeSlot,
@@ -107,14 +107,14 @@ class ReservationDetailsWidget extends StatelessWidget {
   }
 }
 
-// Zeitslot-Widget speziell für Reservierungen
-class ReservationTimeSlotWidget extends StatefulWidget {
+// Korrigierte Zeitslot-Auswahl
+class TimeSlotSelector extends StatefulWidget {
   final DateTime selectedDate;
   final Location location;
   final Function(String) onTimeSelected;
   final String? selectedTimeSlot;
 
-  const ReservationTimeSlotWidget({
+  const TimeSlotSelector({
     super.key,
     required this.selectedDate,
     required this.location,
@@ -123,10 +123,10 @@ class ReservationTimeSlotWidget extends StatefulWidget {
   });
 
   @override
-  State<ReservationTimeSlotWidget> createState() => _ReservationTimeSlotWidgetState();
+  State<TimeSlotSelector> createState() => _TimeSlotSelectorState();
 }
 
-class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
+class _TimeSlotSelectorState extends State<TimeSlotSelector> {
   List<String> _availableSlots = [];
   bool _isLoading = true;
 
@@ -137,7 +137,7 @@ class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
   }
 
   @override
-  void didUpdateWidget(ReservationTimeSlotWidget oldWidget) {
+  void didUpdateWidget(TimeSlotSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.selectedDate != widget.selectedDate) {
       _loadAvailableTimeSlots();
@@ -182,7 +182,7 @@ class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
     
     if (openTime == null || closeTime == null) return [];
     
-    // Generiere 30-Minuten-Slots für Reservierungen
+    // Generiere 30-Minuten-Slots
     final slots = <String>[];
     var currentTime = openTime;
     final lastSlotTime = closeTime.subtract(const Duration(hours: 1)); // 1h vor Schluss
@@ -207,7 +207,7 @@ class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
           slotTime.minute,
         );
         
-        // Mindestens 2 Stunden Vorlaufzeit für Reservierungen
+        // Mindestens 2 Stunden Vorlaufzeit
         return slotDateTime.isBefore(now.add(const Duration(hours: 2)));
       });
     }
@@ -296,13 +296,13 @@ class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
         ),
         const SizedBox(height: 16),
         
-        // Zeit-Buttons im responsiven Grid
+        // Zeit-Buttons im Grid
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            childAspectRatio: 2.2,
+            childAspectRatio: 2.5,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
           ),
@@ -312,15 +312,13 @@ class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
             final isSelected = widget.selectedTimeSlot == slot;
             
             return Material(
-              color: isSelected 
-                  ? Colors.blue.shade50 
-                  : Colors.green.shade50,
+              color: isSelected ? Colors.blue.shade50 : Colors.green.shade50,
               borderRadius: BorderRadius.circular(8),
               child: InkWell(
                 onTap: () => widget.onTimeSelected(slot),
                 borderRadius: BorderRadius.circular(8),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: isSelected ? Colors.blue : Colors.green,
@@ -334,9 +332,7 @@ class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                        color: isSelected 
-                            ? Colors.blue.shade700 
-                            : Colors.green.shade700,
+                        color: isSelected ? Colors.blue.shade700 : Colors.green.shade700,
                       ),
                     ),
                   ),
@@ -344,37 +340,6 @@ class _ReservationTimeSlotWidgetState extends State<ReservationTimeSlotWidget> {
               ),
             );
           },
-        ),
-        
-        const SizedBox(height: 16),
-        
-        // Info-Text für Reservierungen
-        Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: Colors.blue.shade50,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.blue.shade200),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.info_outline,
-                size: 16,
-                color: Colors.blue.shade700,
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  'Reservierungen sind bis zu 90 Tage im Voraus möglich. Mindestens 2 Stunden Vorlaufzeit erforderlich.',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.blue.shade700,
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ],
     );

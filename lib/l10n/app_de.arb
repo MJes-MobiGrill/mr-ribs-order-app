@@ -197,5 +197,12 @@
   "paymentMethods": "Zahlungsmethoden",
   "cashOrCard": "Bar oder Karte",
   "changeAddress": "Adresse ändern",
-  "continueToMenu": "Weiter zum Menü"
+  "continueToMenu": "Weiter zum Menü",
+  "selectArrivalTime": "Ankunftszeit wählen",
+"availableTimeSlots": "Verfügbare Zeiten",
+"noTimeSlotsAvailable": "Keine Zeiten verfügbar",
+"timeSlotUnavailable": "Diese Zeit ist nicht mehr verfügbar",
+"arrivalTime": "Ankunftszeit",
+"timeSlotLabel": "{time} Uhr"
+
 }

@@ -197,5 +197,11 @@
   "paymentMethods": "Payment Methods",
   "cashOrCard": "Cash or Card",
   "changeAddress": "Change address",
-  "continueToMenu": "Continue to menu"
+  "continueToMenu": "Continue to menu",
+  "selectArrivalTime": "Select arrival time",
+"availableTimeSlots": "Available times",
+"noTimeSlotsAvailable": "No times available",
+"timeSlotUnavailable": "This time is no longer available",
+"arrivalTime": "Arrival time",
+"timeSlotLabel": "{time}"
 }
