@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/simple_language_button.dart';
+import '../theme/app_theme.dart';
+import 'location_selection_screen.dart';
 
 class OnlineOrderTypeScreen extends StatelessWidget {
   final Function(Locale)? onLanguageChange;
@@ -17,21 +19,22 @@ class OnlineOrderTypeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.appName),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
         automaticallyImplyLeading: false,
         actions: [
-          // Sprach-Icon in der AppBar (zeigt aktuelle Sprache)
           if (onLanguageChange != null)
             SimpleAppBarLanguageButton(
               onLanguageChanged: onLanguageChange!,
             ),
         ],
       ),
-      // Einfacher schwimmender Button mit Text
       floatingActionButton: onLanguageChange != null 
-          ? SimpleFloatingLanguageButton(
-              onLanguageChanged: onLanguageChange!,
+          ? FloatingActionButton.extended(
+              onPressed: () => _showLanguageDialog(context),
+              backgroundColor: AppTheme.grey800,
+              foregroundColor: Colors.white,
+              elevation: 2,
+              icon: const Icon(Icons.language, size: 20),
+              label: Text(_getLanguageButtonText(context)),
             )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -46,14 +49,14 @@ class OnlineOrderTypeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: Colors.blue.shade50,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.blue.shade200),
+                border: Border.all(color: AppTheme.grey300),
               ),
               child: Icon(
                 Icons.smartphone,
                 size: 64,
-                color: Colors.blue.shade600,
+                color: AppTheme.grey700,
               ),
             ),
             
@@ -62,10 +65,7 @@ class OnlineOrderTypeScreen extends StatelessWidget {
             // Titel
             Text(
               l10n.orderOnline,
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: Colors.blue.shade800,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
             
@@ -73,46 +73,49 @@ class OnlineOrderTypeScreen extends StatelessWidget {
             
             Text(
               l10n.selectConsumptionType,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Colors.grey.shade700,
-              ),
+              style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
             
             const SizedBox(height: 40),
             
-            // Vor Ort essen Button
+            // Buttons
             _buildOrderTypeButton(
               context: context,
               icon: Icons.restaurant,
               title: l10n.dineIn,
               subtitle: l10n.dineInDescription,
-              color: Colors.green,
               onTap: () => _selectOrderType(context, 'dine_in'),
             ),
             
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
             
-            // Zum Mitnehmen Button
             _buildOrderTypeButton(
               context: context,
               icon: Icons.takeout_dining,
               title: l10n.takeaway,
               subtitle: l10n.takeawayDescription,
-              color: Colors.orange,
               onTap: () => _selectOrderType(context, 'takeaway'),
             ),
             
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
             
-            // Lieferung Button (zusätzlich für Online)
             _buildOrderTypeButton(
               context: context,
               icon: Icons.delivery_dining,
-              title: 'Lieferung', // TODO: Add to localization
-              subtitle: 'Lieferung nach Hause', // TODO: Add to localization
-              color: Colors.purple,
+              title: l10n.delivery ?? 'Lieferung',
+              subtitle: l10n.deliveryDescription ?? 'Lieferung nach Hause',
               onTap: () => _selectOrderType(context, 'delivery'),
+            ),
+            
+            const SizedBox(height: 12),
+            
+            _buildOrderTypeButton(
+              context: context,
+              icon: Icons.event_seat,
+              title: l10n.reserveTable,
+              subtitle: l10n.reserveTableDescription,
+              onTap: () => _selectOrderType(context, 'reservation'),
             ),
             
             const Spacer(),
@@ -121,32 +124,29 @@ class OnlineOrderTypeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue.shade50,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.blue.shade200),
+                border: Border.all(color: AppTheme.grey300),
               ),
               child: Row(
                 children: [
                   Icon(
                     Icons.info_outline,
-                    color: Colors.blue.shade600,
+                    color: AppTheme.grey600,
                     size: 20,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'Online-Bestellung: Wählen Sie Ihren gewünschten Service.',
-                      style: TextStyle(
-                        color: Colors.blue.shade800,
-                        fontSize: 13,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ],
               ),
             ),
             
-            const SizedBox(height: 80), // Platz für FloatingActionButton
+            const SizedBox(height: 80),
           ],
         ),
       ),
@@ -158,53 +158,27 @@ class OnlineOrderTypeScreen extends StatelessWidget {
     required IconData icon,
     required String title,
     required String subtitle,
-    required Color color,
     required VoidCallback onTap,
   }) {
     return Container(
-      height: 100,
+      height: 80,
       child: ElevatedButton(
         onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          foregroundColor: color == Colors.green 
-              ? Colors.green.shade800 
-              : color == Colors.orange 
-                  ? Colors.orange.shade800 
-                  : Colors.purple.shade800,
-          elevation: 4,
-          shadowColor: color.withOpacity(0.3),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: BorderSide(
-              color: color == Colors.green 
-                  ? Colors.green.shade200 
-                  : color == Colors.orange 
-                      ? Colors.orange.shade200 
-                      : Colors.purple.shade200,
-              width: 2,
-            ),
-          ),
-        ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: color == Colors.green 
-                    ? Colors.green.shade100 
-                    : color == Colors.orange 
-                        ? Colors.orange.shade100 
-                        : Colors.purple.shade100,
-                borderRadius: BorderRadius.circular(12),
+                color: AppTheme.grey100,
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon,
-                size: 32,
-                color: color,
+                size: 26,
+                color: AppTheme.grey700,
               ),
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -213,29 +187,22 @@ class OnlineOrderTypeScreen extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey.shade600,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: color == Colors.green 
-                  ? Colors.green.shade300 
-                  : color == Colors.orange 
-                      ? Colors.orange.shade300 
-                      : Colors.purple.shade300,
-              size: 20,
+              color: AppTheme.grey400,
+              size: 16,
             ),
           ],
         ),
@@ -244,42 +211,26 @@ class OnlineOrderTypeScreen extends StatelessWidget {
   }
 
   void _selectOrderType(BuildContext context, String orderType) {
-    final l10n = AppLocalizations.of(context)!;
-    
-    String message;
-    Color snackBarColor;
-    
-    switch (orderType) {
-      case 'dine_in':
-        message = '${l10n.dineIn} - ${l10n.proceedingToMenu}';
-        snackBarColor = Colors.green;
-        break;
-      case 'takeaway':
-        message = '${l10n.takeaway} - ${l10n.proceedingToMenu}';
-        snackBarColor = Colors.orange;
-        break;
-      case 'delivery':
-        message = 'Lieferung - ${l10n.proceedingToMenu}';
-        snackBarColor = Colors.purple;
-        break;
-      default:
-        message = l10n.proceedingToMenu;
-        snackBarColor = Colors.blue;
-    }
-    
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: snackBarColor,
-        duration: const Duration(seconds: 2),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LocationSelectionScreen(
+          orderType: orderType,
+        ),
       ),
     );
-    
-    // TODO: Navigation zum entsprechenden Screen
-    // Navigator.push(context, MaterialPageRoute(
-    //   builder: (context) => MenuScreen(
-    //     orderType: orderType,
-    //   ),
-    // ));
+  }
+
+  String _getLanguageButtonText(BuildContext context) {
+    final currentLocale = Localizations.localeOf(context);
+    return currentLocale.languageCode == 'de' 
+        ? '🇬🇧 English'
+        : '🇩🇪 Deutsch';
+  }
+
+  void _showLanguageDialog(BuildContext context) {
+    final currentLocale = Localizations.localeOf(context);
+    final newLanguage = currentLocale.languageCode == 'de' ? 'en' : 'de';
+    onLanguageChange?.call(Locale(newLanguage));
   }
 }

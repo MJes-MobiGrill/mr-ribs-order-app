@@ -181,4 +181,202 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get tapScanButton => 'Tippe den Scan-Button um QR-Codes zu erkennen';
+
+  @override
+  String get cameraActiveInBackground => 'Kamera ist im Hintergrund aktiv';
+
+  @override
+  String get initializingCamera => 'Kamera wird initialisiert...';
+
+  @override
+  String get startCamera => 'Kamera starten';
+
+  @override
+  String get useWebVersion => 'Web-Version für Kamera verwenden';
+
+  @override
+  String get webVersionRecommended => 'Für QR-Code-Scanning nutze bitte die Web-Version unter mrribsorderapp.netlify.app';
+
+  @override
+  String get scanResult => 'Scan-Ergebnis';
+
+  @override
+  String get email => 'E-Mail';
+
+  @override
+  String get emailRequired => 'E-Mail *';
+
+  @override
+  String get emailHint => 'ihre.email@beispiel.de';
+
+  @override
+  String get phoneNumber => 'Telefonnummer';
+
+  @override
+  String get phoneNumberRequired => 'Telefonnummer *';
+
+  @override
+  String get phoneHint => '1234567890';
+
+  @override
+  String get deliveryAddress => 'Lieferadresse';
+
+  @override
+  String get street => 'Straße';
+
+  @override
+  String get streetRequired => 'Straße *';
+
+  @override
+  String get streetHint => 'Musterstraße';
+
+  @override
+  String get houseNumber => 'Nr.';
+
+  @override
+  String get houseNumberRequired => 'Nr. *';
+
+  @override
+  String get houseNumberHint => '123';
+
+  @override
+  String get postalCode => 'PLZ';
+
+  @override
+  String get postalCodeRequired => 'PLZ *';
+
+  @override
+  String get postalCodeHint => '12345';
+
+  @override
+  String get city => 'Stadt';
+
+  @override
+  String get cityRequired => 'Stadt *';
+
+  @override
+  String get cityHint => 'Berlin';
+
+  @override
+  String get deliveryNotes => 'Lieferhinweise (optional)';
+
+  @override
+  String get additionalNotes => 'Anmerkungen (optional)';
+
+  @override
+  String get notesHint => 'z.B. Allergien, besondere Wünsche...';
+
+  @override
+  String get marketingConsent => 'Ich möchte über Angebote und Neuigkeiten informiert werden';
+
+  @override
+  String get privacyNote => 'Mit der Eingabe Ihrer Daten stimmen Sie unseren Datenschutzbestimmungen zu.';
+
+  @override
+  String get reservationDetails => 'Reservierungsdetails';
+
+  @override
+  String get date => 'Datum';
+
+  @override
+  String get dateRequired => 'Datum *';
+
+  @override
+  String get selectDate => 'Datum wählen';
+
+  @override
+  String get time => 'Uhrzeit';
+
+  @override
+  String get timeRequired => 'Uhrzeit *';
+
+  @override
+  String get selectTime => 'Zeit wählen';
+
+  @override
+  String get numberOfGuests => 'Personen';
+
+  @override
+  String get numberOfGuestsRequired => 'Personen *';
+
+  @override
+  String get guest => 'Person';
+
+  @override
+  String get guests => 'Personen';
+
+  @override
+  String get specialRequests => 'Besondere Wünsche (optional)';
+
+  @override
+  String get confirmationByEmail => 'Bestätigung per E-Mail';
+
+  @override
+  String get pickupConfirmationByEmail => 'Abholbestätigung per E-Mail';
+
+  @override
+  String get deliveryConfirmationByEmail => 'Lieferbestätigung per E-Mail';
+
+  @override
+  String get reservationConfirmationByEmail => 'Reservierungsbestätigung per E-Mail';
+
+  @override
+  String get delivery => 'Lieferung';
+
+  @override
+  String get deliveryDescription => 'Lieferung nach Hause';
+
+  @override
+  String get yourContactData => 'Ihre Kontaktdaten für die Bestellung';
+
+  @override
+  String get yourContactAndDeliveryData => 'Ihre Kontakt- und Lieferdaten';
+
+  @override
+  String get yourReservationData => 'Ihre Kontaktdaten für die Reservierung';
+
+  @override
+  String get continueToOrder => 'Weiter zur Bestellung';
+
+  @override
+  String get checkAddressAndContinue => 'Lieferadresse prüfen & weiter';
+
+  @override
+  String get makeReservation => 'Tisch reservieren';
+
+  @override
+  String get dataSaved => 'Daten gespeichert - weiter zum Menü';
+
+  @override
+  String get addressConfirmed => 'Lieferadresse bestätigt - weiter zum Menü';
+
+  @override
+  String get reservationSuccessful => 'Reservierung erfolgreich! Bestätigung wurde per E-Mail versendet.';
+
+  @override
+  String get pleaseEnterEmail => 'Bitte E-Mail-Adresse eingeben';
+
+  @override
+  String get pleaseEnterValidEmail => 'Bitte gültige E-Mail-Adresse eingeben';
+
+  @override
+  String get pleaseEnterPhone => 'Bitte Telefonnummer eingeben';
+
+  @override
+  String get phoneTooShort => 'Telefonnummer zu kurz';
+
+  @override
+  String get pleaseEnterStreet => 'Bitte Straße eingeben';
+
+  @override
+  String get number => 'Nummer';
+
+  @override
+  String get invalid => 'Ungültig';
+
+  @override
+  String get pleaseEnterCity => 'Bitte Stadt eingeben';
+
+  @override
+  String get pleaseSelectDateTime => 'Bitte Datum und Uhrzeit wählen';
 }

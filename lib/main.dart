@@ -9,6 +9,7 @@ import 'services/language_detector_service.dart';
 import 'services/device_service.dart';
 import 'models/location.dart';
 import 'utils/url_helper.dart';
+import 'theme/app_theme.dart';
 
 void main() {
   runApp(const MrRibsOrderApp());

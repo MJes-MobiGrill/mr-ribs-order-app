@@ -442,6 +442,402 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap the scan button to detect QR codes'**
   String get tapScanButton;
+
+  /// No description provided for @cameraActiveInBackground.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera is active in background'**
+  String get cameraActiveInBackground;
+
+  /// No description provided for @initializingCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Initializing camera...'**
+  String get initializingCamera;
+
+  /// No description provided for @startCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Camera'**
+  String get startCamera;
+
+  /// No description provided for @useWebVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Web Version for Camera'**
+  String get useWebVersion;
+
+  /// No description provided for @webVersionRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'For QR-Code scanning, please use the web version at mrribsorderapp.netlify.app'**
+  String get webVersionRecommended;
+
+  /// No description provided for @scanResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Result'**
+  String get scanResult;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @emailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Email *'**
+  String get emailRequired;
+
+  /// No description provided for @emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'your.email@example.com'**
+  String get emailHint;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @phoneNumberRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number *'**
+  String get phoneNumberRequired;
+
+  /// No description provided for @phoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'1234567890'**
+  String get phoneHint;
+
+  /// No description provided for @deliveryAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Address'**
+  String get deliveryAddress;
+
+  /// No description provided for @street.
+  ///
+  /// In en, this message translates to:
+  /// **'Street'**
+  String get street;
+
+  /// No description provided for @streetRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Street *'**
+  String get streetRequired;
+
+  /// No description provided for @streetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Example Street'**
+  String get streetHint;
+
+  /// No description provided for @houseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'No.'**
+  String get houseNumber;
+
+  /// No description provided for @houseNumberRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'No. *'**
+  String get houseNumberRequired;
+
+  /// No description provided for @houseNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'123'**
+  String get houseNumberHint;
+
+  /// No description provided for @postalCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Postal Code'**
+  String get postalCode;
+
+  /// No description provided for @postalCodeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Postal Code *'**
+  String get postalCodeRequired;
+
+  /// No description provided for @postalCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'12345'**
+  String get postalCodeHint;
+
+  /// No description provided for @city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get city;
+
+  /// No description provided for @cityRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'City *'**
+  String get cityRequired;
+
+  /// No description provided for @cityHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Berlin'**
+  String get cityHint;
+
+  /// No description provided for @deliveryNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Notes (optional)'**
+  String get deliveryNotes;
+
+  /// No description provided for @additionalNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional Notes (optional)'**
+  String get additionalNotes;
+
+  /// No description provided for @notesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. allergies, special requests...'**
+  String get notesHint;
+
+  /// No description provided for @marketingConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'I would like to receive offers and news'**
+  String get marketingConsent;
+
+  /// No description provided for @privacyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'By entering your data, you agree to our privacy policy.'**
+  String get privacyNote;
+
+  /// No description provided for @reservationDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Reservation Details'**
+  String get reservationDetails;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @dateRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Date *'**
+  String get dateRequired;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get selectDate;
+
+  /// No description provided for @time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get time;
+
+  /// No description provided for @timeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Time *'**
+  String get timeRequired;
+
+  /// No description provided for @selectTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Time'**
+  String get selectTime;
+
+  /// No description provided for @numberOfGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests'**
+  String get numberOfGuests;
+
+  /// No description provided for @numberOfGuestsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests *'**
+  String get numberOfGuestsRequired;
+
+  /// No description provided for @guest.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get guest;
+
+  /// No description provided for @guests.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests'**
+  String get guests;
+
+  /// No description provided for @specialRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Special Requests (optional)'**
+  String get specialRequests;
+
+  /// No description provided for @confirmationByEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation by email'**
+  String get confirmationByEmail;
+
+  /// No description provided for @pickupConfirmationByEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup confirmation by email'**
+  String get pickupConfirmationByEmail;
+
+  /// No description provided for @deliveryConfirmationByEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery confirmation by email'**
+  String get deliveryConfirmationByEmail;
+
+  /// No description provided for @reservationConfirmationByEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Reservation confirmation by email'**
+  String get reservationConfirmationByEmail;
+
+  /// No description provided for @delivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get delivery;
+
+  /// No description provided for @deliveryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Home delivery'**
+  String get deliveryDescription;
+
+  /// No description provided for @yourContactData.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contact information for the order'**
+  String get yourContactData;
+
+  /// No description provided for @yourContactAndDeliveryData.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contact and delivery information'**
+  String get yourContactAndDeliveryData;
+
+  /// No description provided for @yourReservationData.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contact information for the reservation'**
+  String get yourReservationData;
+
+  /// No description provided for @continueToOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to order'**
+  String get continueToOrder;
+
+  /// No description provided for @checkAddressAndContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Check address & continue'**
+  String get checkAddressAndContinue;
+
+  /// No description provided for @makeReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Make reservation'**
+  String get makeReservation;
+
+  /// No description provided for @dataSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Data saved - continue to menu'**
+  String get dataSaved;
+
+  /// No description provided for @addressConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery address confirmed - continue to menu'**
+  String get addressConfirmed;
+
+  /// No description provided for @reservationSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Reservation successful! Confirmation sent by email.'**
+  String get reservationSuccessful;
+
+  /// No description provided for @pleaseEnterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter email address'**
+  String get pleaseEnterEmail;
+
+  /// No description provided for @pleaseEnterValidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter valid email address'**
+  String get pleaseEnterValidEmail;
+
+  /// No description provided for @pleaseEnterPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter phone number'**
+  String get pleaseEnterPhone;
+
+  /// No description provided for @phoneTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number too short'**
+  String get phoneTooShort;
+
+  /// No description provided for @pleaseEnterStreet.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter street'**
+  String get pleaseEnterStreet;
+
+  /// No description provided for @number.
+  ///
+  /// In en, this message translates to:
+  /// **'Number'**
+  String get number;
+
+  /// No description provided for @invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid'**
+  String get invalid;
+
+  /// No description provided for @pleaseEnterCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter city'**
+  String get pleaseEnterCity;
+
+  /// No description provided for @pleaseSelectDateTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select date and time'**
+  String get pleaseSelectDateTime;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
