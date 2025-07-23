@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
-// import 'screens/order_type_selection_screen.dart'; // Nicht mehr benötigt
+import 'screens/terminal_order_screen.dart';
 import 'screens/on_site_order_type_screen.dart';
 import 'screens/online_order_type_screen.dart';
 import 'services/location_service.dart';
@@ -89,11 +89,11 @@ class _MrRibsOrderAppState extends State<MrRibsOrderApp> {
   String _getFlowDescription(DeviceDetectionResult result) {
     switch (result.deviceType) {
       case DeviceType.terminal:
-        return '🖥️ Terminal → Language → OnSite OrderType';
+        return '🖥️ Terminal → TerminalOrderScreen (keine Kontaktdaten)';
       case DeviceType.external:
-        return '📱 External → Language → Online OrderType';
+        return '📱 External → OnlineOrderTypeScreen (mit Kontaktdaten)';
       case DeviceType.qrCode:
-        return '📷 QR-Code → Language → OnSite OrderType';
+        return '📷 QR-Code → OnSiteOrderTypeScreen (Restaurant vor Ort)';
     }
   }
 
@@ -108,6 +108,7 @@ class _MrRibsOrderAppState extends State<MrRibsOrderApp> {
     // Loading Screen
     if (_isLoading || !_hasDetectedDevice) {
       return MaterialApp(
+        theme: AppTheme.getTheme(),
         home: _buildLoadingScreen(),
       );
     }
@@ -121,17 +122,14 @@ class _MrRibsOrderAppState extends State<MrRibsOrderApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: LanguageDetectorService.getSupportedLanguages(),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.getTheme(),
       home: _getHomeScreen(),
     );
   }
 
   Widget _buildLoadingScreen() {
     return Scaffold(
-      backgroundColor: Colors.blue.shade50,
+      backgroundColor: AppTheme.backgroundGrey,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -146,7 +144,7 @@ class _MrRibsOrderAppState extends State<MrRibsOrderApp> {
                   width: 120,
                   height: 120,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: AppTheme.primaryDark,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: const Icon(
@@ -160,11 +158,11 @@ class _MrRibsOrderAppState extends State<MrRibsOrderApp> {
             const SizedBox(height: 32),
             const CircularProgressIndicator(),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Detecting device...',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey,
+                color: AppTheme.grey600,
               ),
             ),
           ],
@@ -176,37 +174,22 @@ class _MrRibsOrderAppState extends State<MrRibsOrderApp> {
   Widget _getHomeScreen() {
     // Fehlerbehandlung
     if (_deviceResult == null) {
-      return Scaffold(
-        backgroundColor: Colors.red.shade50,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.error, size: 64, color: Colors.red.shade400),
-              const SizedBox(height: 16),
-              const Text(
-                'Device detection failed',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              const Text('Please restart the app'),
-            ],
-          ),
-        ),
-      );
+      return _buildErrorScreen();
     }
 
-    // 🚀 Direkter Router basierend auf Device Type (kein Language Screen!)
+    // 🚀 Direkter Router basierend auf Device Type
     switch (_deviceResult!.deviceType) {
       case DeviceType.terminal:
-        // 🖥️ TERMINAL: Gerät ist im Restaurant registriert
-        return OnSiteOrderTypeScreen(
+        // 🖥️ TERMINAL: Registriertes Restaurant-Gerät
+        // → Direkt zur TerminalOrderScreen (OHNE Kontaktdaten)
+        return TerminalOrderScreen(
           location: _deviceResult!.location!,
           onLanguageChange: _setLocale,
         );
 
       case DeviceType.qrCode:
-        // 📷 QR-CODE: User hat QR-Code gescannt
+        // 📷 QR-CODE: Fremdgerät hat QR-Code gescannt
+        // → OnSiteOrderTypeScreen (im Restaurant, MIT Kontaktdaten-Option)
         if (_deviceResult!.location != null) {
           return OnSiteOrderTypeScreen(
             location: _deviceResult!.location!,
@@ -220,15 +203,65 @@ class _MrRibsOrderAppState extends State<MrRibsOrderApp> {
         }
 
       case DeviceType.external:
-        // 📱 EXTERNAL: Normales Kundengerät
+        // 📱 EXTERNAL: Normales Kundengerät von außerhalb
+        // → OnlineOrderTypeScreen (mit vollem Service)
         return OnlineOrderTypeScreen(
           onLanguageChange: _setLocale,
         );
     }
   }
+
+  Widget _buildErrorScreen() {
+    return Scaffold(
+      backgroundColor: AppTheme.backgroundGrey,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error,
+              size: 64,
+              color: AppTheme.primaryRed,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Device detection failed',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: AppTheme.grey900,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Please restart the app',
+              style: TextStyle(
+                color: AppTheme.grey600,
+              ),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _isLoading = true;
+                  _hasDetectedDevice = false;
+                });
+                _initializeApp();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.primaryDark,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
-// Debug Widget für Development (optional)
+// Debug Widget für Development (optional, kann entfernt werden)
 class DebugInfoWidget extends StatelessWidget {
   final DeviceDetectionResult deviceResult;
 
@@ -240,9 +273,9 @@ class DebugInfoWidget extends StatelessWidget {
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
+        color: AppTheme.grey100,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: AppTheme.grey300),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,7 +286,7 @@ class DebugInfoWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: Colors.grey.shade600,
+              color: AppTheme.grey600,
             ),
           ),
           const SizedBox(height: 8),

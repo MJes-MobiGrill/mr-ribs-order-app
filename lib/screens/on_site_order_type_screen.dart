@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../models/location.dart';
+import '../theme/app_theme.dart';
 import 'data_input_screen.dart';
 
 // Sprachwahl-Widget
@@ -98,12 +99,13 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8), // Sehr helles Grau
+      backgroundColor: AppTheme.backgroundGrey,
       appBar: AppBar(
         title: Text(l10n.appName),
-        backgroundColor: const Color(0xFF2C2C2C), // Fast Schwarz
+        backgroundColor: AppTheme.primaryDark,
         foregroundColor: Colors.white,
         elevation: 0,
+        automaticallyImplyLeading: false,
         actions: [
           if (onLanguageChange != null)
             CompactLanguageToggle(
@@ -118,37 +120,81 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             
+            // QR-Code Scan Bestätigung
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.green.shade50,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.green.shade200),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.qr_code_scanner,
+                    color: Colors.green.shade700,
+                    size: 24,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'QR-Code erkannt!',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green.shade800,
+                          ),
+                        ),
+                        Text(
+                          'Sie befinden sich bei ${location.name}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.green.shade700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            
+            const SizedBox(height: 24),
+            
             // Restaurant Info Card
             Card(
               elevation: 0,
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: Colors.grey.shade300, width: 1),
+                side: BorderSide(color: AppTheme.grey300, width: 1),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
                     Icon(
                       Icons.location_on,
-                      color: const Color(0xFF8B0000), // Dunkles Rot nur für Akzent
-                      size: 28,
+                      color: AppTheme.primaryRed,
+                      size: 32,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     Text(
                       location.name,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF212121), // Fast Schwarz
+                        color: AppTheme.grey900,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 6),
                     Text(
                       location.address,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: const Color(0xFF616161), // Mittelgrau
+                        color: AppTheme.grey600,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -157,14 +203,24 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
               ),
             ),
             
-            const SizedBox(height: 40),
+            const SizedBox(height: 32),
             
             // Titel
             Text(
               l10n.selectConsumptionType,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: const Color(0xFF212121),
+                color: AppTheme.grey900,
                 fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            
+            const SizedBox(height: 8),
+            
+            Text(
+              'Mit Kontaktdaten bestellen',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: AppTheme.grey600,
               ),
               textAlign: TextAlign.center,
             ),
@@ -199,21 +255,21 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(color: AppTheme.grey300),
               ),
               child: Row(
                 children: [
                   Icon(
                     Icons.info_outline,
-                    color: const Color(0xFF757575),
+                    color: AppTheme.grey600,
                     size: 20,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      l10n.consumptionTypeInfo,
+                      'QR-Code-Bestellung: Mit Ihren Kontaktdaten für E-Mail-Bestätigung',
                       style: TextStyle(
-                        color: const Color(0xFF616161),
+                        color: AppTheme.grey600,
                         fontSize: 13,
                       ),
                     ),
@@ -222,7 +278,7 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
               ),
             ),
             
-            const SizedBox(height: 60), // Weniger Platz am Ende
+            const SizedBox(height: 60),
           ],
         ),
       ),
@@ -242,11 +298,11 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
-          foregroundColor: const Color(0xFF212121),
+          foregroundColor: AppTheme.grey900,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: Colors.grey.shade300, width: 1),
+            side: BorderSide(color: AppTheme.grey300, width: 1),
           ),
         ),
         child: Row(
@@ -254,13 +310,13 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.grey.shade100,
+                color: AppTheme.grey100,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon,
                 size: 28,
-                color: const Color(0xFF424242), // Dunkelgrau
+                color: AppTheme.grey700,
               ),
             ),
             const SizedBox(width: 16),
@@ -274,15 +330,15 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF212121),
+                      color: AppTheme.grey900,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    subtitle,
+                    '$subtitle + E-Mail-Bestätigung',
                     style: const TextStyle(
                       fontSize: 13,
-                      color: Color(0xFF616161),
+                      color: AppTheme.grey600,
                     ),
                   ),
                 ],
@@ -290,7 +346,7 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: Colors.grey.shade400,
+              color: AppTheme.grey400,
               size: 18,
             ),
           ],
@@ -300,7 +356,7 @@ class OnSiteOrderTypeScreen extends StatelessWidget {
   }
 
   void _selectConsumptionType(BuildContext context, String consumptionType) {
-    // Navigation zum DataInputScreen
+    // Navigation zum DataInputScreen (MIT Kontaktdaten)
     Navigator.push(
       context,
       MaterialPageRoute(
